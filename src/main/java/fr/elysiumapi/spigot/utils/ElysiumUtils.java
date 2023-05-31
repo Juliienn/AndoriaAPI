@@ -1,4 +1,4 @@
-package fr.elysiumapi.utils;
+package fr.elysiumapi.spigot.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

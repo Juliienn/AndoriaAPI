@@ -1,31 +1,30 @@
-package fr.elysiumapi.ranks;
+package fr.elysiumapi.commons.ranks;
 
-import com.google.common.collect.Maps;
-import org.bukkit.ChatColor;
+import fr.elysiumapi.commons.Symbols;
 
 import java.util.HashMap;
 
 public enum ElysiumRanks {
 
-    HININ("Hinin", ChatColor.GRAY, 1, 0),
-    GUERRIER("Guerrier", ChatColor.DARK_AQUA, 2, 0),
-    DAIMYO("Daimyo", ChatColor.LIGHT_PURPLE, 3, 0),
-    TAISHO("Taisho", ChatColor.AQUA, 4, 0),
-    SAMURAI("Samurai", ChatColor.GOLD, 5, 0),
-    YOUTUBEUR("Youtubeur", ChatColor.GOLD, 5, -1),
-    YOUTUBEURPLUS("Youtubeur+", ChatColor.WHITE, 6, -1),
-    ASSISTANT("Assistant", ChatColor.GOLD, 7, -1),
-    BUILDER("Builder", ChatColor.GREEN, 8, -1),
-    MODERATEUR("Modérateur", ChatColor.GREEN, 9, -1),
-    SUPERMODERATEUR("Modérateur+", ChatColor.DARK_GREEN, 10, -1),
-    ADMIN("Administrateur", ChatColor.RED, 11, -1);
+    HININ("Hinin", "§7", 1, 0),
+    GUERRIER("Guerrier", "§3", 2, 0),
+    DAIMYO("Daimyo", "§d", 3, 0),
+    TAISHO("Taisho", "§b", 4, 0),
+    SAMURAI("Samurai", "§6", 5, 0),
+    YOUTUBEUR("Youtubeur", "§6", 5, -1),
+    YOUTUBEURPLUS("Youtubeur+", "§6", 6, -1),
+    ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, -1),
+    BUILDER("Builder", "§a", 8, -1),
+    MODERATEUR("Modérateur", "§a", 9, -1),
+    SUPERMODERATEUR("Modérateur+", "§2", 10, -1),
+    ADMIN("Administrateur", "§c", 11, -1);
 
     String prefix;
-    ChatColor tag;
+    String tagId;
     int power;
     int price;
 
-    private static HashMap<String, ElysiumRanks> ranks = Maps.newHashMap();
+    private static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
 
     static{
         for(ElysiumRanks rank : ElysiumRanks.values()){
@@ -33,9 +32,9 @@ public enum ElysiumRanks {
         }
     }
 
-    ElysiumRanks(String prefix, ChatColor tag, int power, int price){
+    ElysiumRanks(String prefix, String tagId, int power, int price){
         this.prefix = prefix;
-        this.tag = tag;
+        this.tagId = tagId;
         this.power = power;
         this.price = price;
     }
@@ -55,8 +54,8 @@ public enum ElysiumRanks {
         return power;
     }
 
-    public ChatColor getTag() {
-        return tag;
+    public String getTagId() {
+        return tagId;
     }
 
     public int getPrice() {

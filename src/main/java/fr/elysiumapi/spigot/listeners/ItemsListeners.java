@@ -1,9 +1,9 @@
-package fr.elysiumapi.listeners;
+package fr.elysiumapi.spigot.listeners;
 
-import fr.elysiumapi.ElysiumAPI;
-import fr.elysiumapi.items.InventoryItem;
-import fr.elysiumapi.items.ItemBuilder;
-import fr.elysiumapi.player.ElysiumPlayer;
+import fr.elysiumapi.spigot.ElysiumAPI;
+import fr.elysiumapi.spigot.items.InventoryItem;
+import fr.elysiumapi.spigot.items.ItemBuilder;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

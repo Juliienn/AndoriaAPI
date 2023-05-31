@@ -1,4 +1,4 @@
-package fr.elysiumapi.utils;
+package fr.elysiumapi.commons;
 
 public final class Symbols {
     public static final String GAMING_CROSS = "✜";

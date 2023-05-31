@@ -1,4 +1,4 @@
-package fr.elysiumapi.items;
+package fr.elysiumapi.spigot.items;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;

@@ -1,19 +1,13 @@
-package fr.elysiumapi;
+package fr.elysiumapi.spigot;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-import fr.elysiumapi.bungeecord.PluginMessageListener;
-import fr.elysiumapi.items.InventoryItem;
-import fr.elysiumapi.items.ItemBuilder;
-import fr.elysiumapi.listeners.ItemsListeners;
-import fr.elysiumapi.listeners.PlayerListener;
-import fr.elysiumapi.player.ElysiumPlayer;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import fr.elysiumapi.spigot.bungeecord.PluginMessageListener;
+import fr.elysiumapi.spigot.items.InventoryItem;
+import fr.elysiumapi.spigot.items.ItemBuilder;
+import fr.elysiumapi.spigot.listeners.ItemsListeners;
+import fr.elysiumapi.spigot.listeners.PlayerListener;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;

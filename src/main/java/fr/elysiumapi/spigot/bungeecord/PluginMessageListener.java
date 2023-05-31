@@ -1,9 +1,9 @@
-package fr.elysiumapi.bungeecord;
+package fr.elysiumapi.spigot.bungeecord;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
-import fr.elysiumapi.player.ElysiumPlayer;
-import fr.elysiumapi.ranks.ElysiumRanks;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
+import fr.elysiumapi.commons.ranks.ElysiumRanks;
 import org.bukkit.entity.Player;
 
 public class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {

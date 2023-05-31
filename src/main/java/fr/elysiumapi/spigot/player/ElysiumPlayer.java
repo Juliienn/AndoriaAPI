@@ -1,8 +1,8 @@
-package fr.elysiumapi.player;
+package fr.elysiumapi.spigot.player;
 
-import fr.elysiumapi.ElysiumAPI;
-import fr.elysiumapi.inventories.ElysiumInventory;
-import fr.elysiumapi.ranks.ElysiumRanks;
+import fr.elysiumapi.spigot.ElysiumAPI;
+import fr.elysiumapi.spigot.inventories.ElysiumInventory;
+import fr.elysiumapi.commons.ranks.ElysiumRanks;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

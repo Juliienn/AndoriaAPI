@@ -1,10 +1,10 @@
-package fr.elysiumapi.listeners;
+package fr.elysiumapi.spigot.listeners;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import fr.elysiumapi.ElysiumAPI;
-import fr.elysiumapi.player.ElysiumPlayer;
-import fr.elysiumapi.utils.Symbols;
+import fr.elysiumapi.spigot.ElysiumAPI;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
+import fr.elysiumapi.commons.Symbols;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onChat(AsyncPlayerChatEvent event){
         ElysiumPlayer player = ElysiumPlayer.getElysiumPlayer(event.getPlayer());
-        event.setFormat(ChatColor.YELLOW + Symbols.ARROW_RIGHT_FULL + " " + player.getRank().getTag() + player.getRank().getPrefix() + " " + player.getPlayer().getName() + ": " + ChatColor.WHITE + event.getMessage());
+        event.setFormat(ChatColor.YELLOW + Symbols.ARROW_RIGHT_FULL + " " + player.getRank().getTagId() + player.getRank().getPrefix() + " " + player.getPlayer().getName() + ": " + ChatColor.WHITE + event.getMessage());
     }
 
 

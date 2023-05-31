@@ -1,6 +1,6 @@
-package fr.elysiumapi.commands;
+package fr.elysiumapi.spigot.commands;
 
-import fr.elysiumapi.player.ElysiumPlayer;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

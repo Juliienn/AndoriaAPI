@@ -1,7 +1,7 @@
-package fr.elysiumapi.items.items;
+package fr.elysiumapi.spigot.items.items;
 
-import fr.elysiumapi.items.ItemBuilder;
-import fr.elysiumapi.player.ElysiumPlayer;
+import fr.elysiumapi.spigot.items.ItemBuilder;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

@@ -1,6 +1,6 @@
-package fr.elysiumapi.inventories;
+package fr.elysiumapi.spigot.inventories;
 
-import fr.elysiumapi.items.ItemBuilder;
+import fr.elysiumapi.spigot.items.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
