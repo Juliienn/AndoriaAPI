@@ -11,7 +11,7 @@ public enum ElysiumRanks {
     DAIMYO("Daimyo", "§d", 3, 0),
     TAISHO("Taisho", "§b", 4, 0),
     SAMURAI("Samurai", "§6", 5, 0),
-    YOUTUBEUR("Youtubeur", "§6", 5, -1),
+    YOUTUBEUR("Youtubeur", "§6", 6, -1),
     YOUTUBEURPLUS("Youtubeur+", "§6", 6, -1),
     ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, -1),
     BUILDER("Builder", "§a", 8, -1),

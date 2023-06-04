@@ -1,11 +1,8 @@
 package fr.elysiumapi.spigot.listeners;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
 import fr.elysiumapi.spigot.ElysiumAPI;
 import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import fr.elysiumapi.commons.Symbols;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,13 +31,6 @@ public class PlayerListener implements Listener {
     public void onJoin(PlayerJoinEvent event){
         event.setJoinMessage(null);
         final Player player = event.getPlayer();
-        final ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("getStats");
-        out.writeUTF(player.getUniqueId().toString());
-
-        Bukkit.getScheduler().scheduleSyncDelayedTask(elysiumAPI, () -> {
-                player.sendPluginMessage(elysiumAPI, "playerStats", out.toByteArray());
-        }, 3L);
     }
 
     @EventHandler(priority = EventPriority.HIGH)

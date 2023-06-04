@@ -2,7 +2,6 @@ package fr.elysiumapi.spigot;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import fr.elysiumapi.spigot.bungeecord.PluginMessageListener;
 import fr.elysiumapi.spigot.items.InventoryItem;
 import fr.elysiumapi.spigot.items.ItemBuilder;
 import fr.elysiumapi.spigot.listeners.ItemsListeners;
@@ -19,7 +18,6 @@ public final class ElysiumAPI extends JavaPlugin {
     private static ElysiumAPI instance;
     private static Map<UUID, ElysiumPlayer> players;
     private List<ItemBuilder> items;
-
     private List<InventoryItem> inventoryItems;
 
     @Override
@@ -31,7 +29,6 @@ public final class ElysiumAPI extends JavaPlugin {
         items = Lists.newArrayList();
         inventoryItems = Lists.newArrayList();
 
-        getServer().getMessenger().registerIncomingPluginChannel(this, "playerStats", new PluginMessageListener());
         getServer().getMessenger().registerOutgoingPluginChannel(this, "playerStats");
 
         //Listeners
