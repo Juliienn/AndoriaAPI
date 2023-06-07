@@ -23,7 +23,7 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onChat(AsyncPlayerChatEvent event){
         ElysiumPlayer player = ElysiumPlayer.getElysiumPlayer(event.getPlayer());
-        event.setFormat(ChatColor.YELLOW + Symbols.ARROW_RIGHT_FULL + " " + player.getRank().getTagId() + player.getRank().getPrefix() + " " + player.getPlayer().getName() + ": " + ChatColor.WHITE + event.getMessage());
+        event.setFormat(ChatColor.YELLOW + Symbols.ARROW_RIGHT_FULL + " " + player.getPlayerData().getRank().getTagId() + player.getPlayerData().getRank().getPrefix() + " " + player.getPlayerData().getName() + ": " + ChatColor.WHITE + event.getMessage());
     }
 
 
