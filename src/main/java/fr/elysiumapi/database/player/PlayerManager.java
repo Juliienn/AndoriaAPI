@@ -74,7 +74,7 @@ public class PlayerManager {
     public void createAccount(UUID uuid, String name){
         try {
             Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-            final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO players (uuid,pseudo,grade,money,vip,createdat) VALUES (?, ?, ?, ?, ?, ?)");
+            final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO players (uuid,pseudo,grade,money,vip,created_at) VALUES (?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, "Hinin");
