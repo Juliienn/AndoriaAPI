@@ -31,12 +31,12 @@ public class PlayerManager {
         return playerData;
     }
 
-    public PlayerData getPlayerDataFromRedis(UUID uuid) throws PlayerDataNotFoundException {
+    public PlayerData getPlayerDataFromRedis(UUID uuid){
         Jedis jedis = elysiumDatabase.getJedisConnector().getJedisRessource();
         PlayerData playerData = null;
         String jedisDatas = jedis.get(JedisManager.PLAYERS.getRedisAccess() + uuid.toString());
         if(jedisDatas == null){
-            throw new PlayerDataNotFoundException();
+            return null;
         }
         String[] accountDatas = jedisDatas.split(":");
         playerData = new PlayerData(Integer.parseInt(accountDatas[0]), uuid, accountDatas[1], ElysiumRanks.nameToRank(accountDatas[2]), Integer.parseInt(accountDatas[3]), Integer.parseInt(accountDatas[4]), new Timestamp(Long.parseLong(accountDatas[5])));
