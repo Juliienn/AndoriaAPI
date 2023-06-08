@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 
 public abstract class ElysiumCommand implements CommandExecutor {
 
-    private String commandName;
-    private int powerRequired;
+    private final String commandName;
+    private final int powerRequired;
 
     public ElysiumCommand(String commandName, int powerRequired){
         this.commandName = commandName;

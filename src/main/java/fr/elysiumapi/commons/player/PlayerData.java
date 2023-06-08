@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public class PlayerData {
 
-    private int id;
-    private UUID uuid;
-    private String name;
+    private final int id;
+    private final UUID uuid;
+    private final String name;
     private ElysiumRanks rank;
     private int money;
     private int vip;
-    private Timestamp createdat;
+    private final Timestamp createdat;
 
     public PlayerData(int id, UUID uuid,String name, ElysiumRanks rank, int money, int vip, Timestamp createdat){
         this.id = id;
@@ -22,6 +22,26 @@ public class PlayerData {
         this.rank = rank;
         this.vip = vip;
         this.createdat = createdat;
+    }
+
+    public void addMoney(int amount){
+        this.money += amount;
+    }
+
+    public void addVip(int amount){
+        this.vip += amount;
+    }
+
+    public void setRank(ElysiumRanks rank) {
+        this.rank = rank;
+    }
+
+    public void setVip(int vip) {
+        this.vip = vip;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public UUID getUuid() {

@@ -19,10 +19,10 @@ public enum ElysiumRanks {
     SUPERMODERATEUR("Modérateur+", "§2", 10, -1),
     ADMIN("Administrateur", "§c", 11, -1);
 
-    String prefix;
-    String tagId;
-    int power;
-    int price;
+    final String prefix;
+    final String tagId;
+    final int power;
+    final int price;
 
     private static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
 

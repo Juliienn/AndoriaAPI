@@ -29,8 +29,6 @@ public final class ElysiumAPI extends JavaPlugin {
         items = Lists.newArrayList();
         inventoryItems = Lists.newArrayList();
 
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "playerStats");
-
         //Listeners
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new ItemsListeners(this), this);
