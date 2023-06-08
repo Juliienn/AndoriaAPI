@@ -27,7 +27,7 @@ public class JedisConnector {
         config.setMaxTotal(-1);
         config.setJmxEnabled(false);
         try {
-            this.jedisPool = new JedisPool(config, this.jedisConnection.getHost(), this.jedisConnection.getPort(), 0, this.jedisConnection.getPassword());
+            this.jedisPool = new JedisPool(config, this.jedisConnection.getHost(), this.jedisConnection.getPort(), 0);
             this.jedisPool.getResource().close();
 
             System.out.println("§cConnected to redis");
