@@ -1,4 +1,4 @@
-package fr.elysiumapi.commons.player;
+package fr.elysiumapi.database.player;
 
 import fr.elysiumapi.commons.ranks.ElysiumRanks;
 

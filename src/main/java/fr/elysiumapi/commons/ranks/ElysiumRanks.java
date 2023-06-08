@@ -24,7 +24,7 @@ public enum ElysiumRanks {
     final int power;
     final int price;
 
-    private static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
+    private final static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
 
     static{
         for(ElysiumRanks rank : ElysiumRanks.values()){

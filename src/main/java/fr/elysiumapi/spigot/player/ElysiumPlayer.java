@@ -1,6 +1,6 @@
 package fr.elysiumapi.spigot.player;
 
-import fr.elysiumapi.commons.player.PlayerData;
+import fr.elysiumapi.database.player.PlayerData;
 import fr.elysiumapi.spigot.ElysiumAPI;
 import fr.elysiumapi.spigot.inventories.ElysiumInventory;
 import org.bukkit.Bukkit;
