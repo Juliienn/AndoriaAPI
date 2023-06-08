@@ -33,12 +33,13 @@ public class PlayerManager {
 
     public PlayerData getPlayerDataFromRedis(UUID uuid) throws PlayerDataNotFoundException {
         Jedis jedis = elysiumDatabase.getJedisConnector().getJedisRessource();
+        PlayerData playerData = null;
         String jedisDatas = jedis.get(JedisManager.PLAYERS.getRedisAccess() + uuid.toString());
         if(jedisDatas == null){
             throw new PlayerDataNotFoundException();
         }
         String[] accountDatas = jedisDatas.split(":");
-        PlayerData playerData = new PlayerData(Integer.parseInt(accountDatas[0]), uuid, accountDatas[1], ElysiumRanks.nameToRank(accountDatas[2]), Integer.parseInt(accountDatas[3]), Integer.parseInt(accountDatas[4]), new Timestamp(Long.parseLong(accountDatas[5])));
+        playerData = new PlayerData(Integer.parseInt(accountDatas[0]), uuid, accountDatas[1], ElysiumRanks.nameToRank(accountDatas[2]), Integer.parseInt(accountDatas[3]), Integer.parseInt(accountDatas[4]), new Timestamp(Long.parseLong(accountDatas[5])));
         jedis.close();
         return playerData;
     }
@@ -46,7 +47,7 @@ public class PlayerManager {
     public PlayerData getPlayerDataFromDatabase(UUID uuid, String name) throws PlayerDataNotFoundException{
         try {
             final Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-            final PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, pseudo, grade, money, vip, createdat FROM players WHERE uuid = ?");
+            final PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, pseudo, grade, money, vip, created_at FROM players WHERE uuid = ?");
             preparedStatement.setString(1, uuid.toString());
             final ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -58,7 +59,7 @@ public class PlayerManager {
                 String rankName = resultSet.getString("grade");
                 int money = resultSet.getInt("money");
                 int vip = resultSet.getInt("vip");
-                Timestamp timestamp = resultSet.getTimestamp("createdat");
+                Timestamp timestamp = resultSet.getTimestamp("created_at");
                 return new PlayerData(0, uuid, name, ElysiumRanks.nameToRank(rankName), money, vip, timestamp);
             }else {
                 createAccount(uuid, name);
