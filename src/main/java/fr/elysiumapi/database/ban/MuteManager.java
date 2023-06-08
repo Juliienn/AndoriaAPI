@@ -1,6 +1,6 @@
 package fr.elysiumapi.database.ban;
 
-import fr.elysiumdatabase.sql.DatabaseManager;
+import fr.elysiumapi.database.sql.DatabaseManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
