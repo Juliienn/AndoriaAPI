@@ -20,7 +20,6 @@ import java.util.UUID;
 public final class ElysiumAPI extends JavaPlugin {
 
     public JedisConnector jedisConnector;
-
     public PlayerManager playerManager;
     public ElysiumDatabase proxyDatabase;
     private static ElysiumAPI instance;

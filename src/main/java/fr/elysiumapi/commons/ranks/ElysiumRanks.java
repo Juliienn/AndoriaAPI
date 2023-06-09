@@ -7,10 +7,10 @@ import java.util.HashMap;
 public enum ElysiumRanks {
 
     HININ("Hinin", "§7", 1, 0),
-    GUERRIER("Guerrier", "§3", 2, 0),
-    DAIMYO("Daimyo", "§d", 3, 0),
-    TAISHO("Taisho", "§b", 4, 0),
-    SAMURAI("Samurai", "§6", 5, 0),
+    GUERRIER("Guerrier", "§3", 2, 500),
+    DAIMYO("Daimyo", "§d", 3, 500),
+    TAISHO("Taisho", "§b", 4, 500),
+    SAMURAI("Samurai", "§6", 5, 500),
     YOUTUBEUR("Youtubeur", "§6", 6, -1),
     YOUTUBEURPLUS("Youtubeur+", "§6", 6, -1),
     ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, -1),

@@ -35,6 +35,6 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onQuit(PlayerQuitEvent event){
-        ElysiumAPI.getPlayers().remove(event.getPlayer());
+        ElysiumAPI.getPlayers().remove(event.getPlayer().getUniqueId());
     }
 }
