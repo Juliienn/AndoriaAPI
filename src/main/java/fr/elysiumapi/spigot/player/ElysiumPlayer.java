@@ -10,7 +10,6 @@ import java.util.UUID;
 
 public final class ElysiumPlayer {
     private final Player player;
-    private PlayerData playerData;
     public ElysiumPlayer(Player player) {
         this.player = player;
     }
@@ -28,14 +27,6 @@ public final class ElysiumPlayer {
 
     public void openInventory(ElysiumInventory inventory) {
         player.openInventory(inventory.getInventory());
-    }
-
-    public void setPlayerData(PlayerData playerData) {
-        this.playerData = playerData;
-    }
-
-    public PlayerData getPlayerData() {
-        return playerData;
     }
 
     public static ElysiumPlayer getElysiumPlayer(UUID uuid){

@@ -1,5 +1,8 @@
 package fr.elysiumapi.spigot.commands;
 
+import fr.elysiumapi.database.player.PlayerData;
+import fr.elysiumapi.database.player.PlayerManager;
+import fr.elysiumapi.spigot.ElysiumAPI;
 import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,10 +12,12 @@ import org.bukkit.entity.Player;
 
 public abstract class ElysiumCommand implements CommandExecutor {
 
+    private final PlayerManager playerManager;
     private final String commandName;
     private final int powerRequired;
 
-    public ElysiumCommand(String commandName, int powerRequired){
+    public ElysiumCommand(PlayerManager playerManager, String commandName, int powerRequired){
+        this.playerManager = playerManager;
         this.commandName = commandName;
         this.powerRequired = powerRequired;
     }
@@ -22,8 +27,8 @@ public abstract class ElysiumCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String name, String[] args) {
         if(commandSender instanceof Player){
             if(name.equalsIgnoreCase(commandName)){
-                ElysiumPlayer player = ElysiumPlayer.getElysiumPlayer((Player)commandSender);
-                if(player.getPlayerData().getRank().getPower() >= this.powerRequired) {
+                PlayerData playerData = playerManager.getPlayerData(((Player)commandSender).getUniqueId(), ((Player) commandSender).getName());
+                if(playerData.getRank().getPower() >= this.powerRequired) {
                     execute(ElysiumPlayer.getElysiumPlayer((Player) commandSender), args);
                 }else{
                     commandSender.sendMessage(ChatColor.RED + "Commande inconnue, pour afficher les commandes disponibles /help");
