@@ -1,6 +1,5 @@
 package fr.elysiumapi.spigot.player;
 
-import fr.elysiumapi.database.player.PlayerData;
 import fr.elysiumapi.spigot.ElysiumAPI;
 import fr.elysiumapi.spigot.inventories.ElysiumInventory;
 import org.bukkit.Bukkit;
@@ -41,5 +40,9 @@ public final class ElysiumPlayer {
             ElysiumAPI.getPlayers().put(player.getUniqueId(), new ElysiumPlayer(player));
         }
         return ElysiumAPI.getPlayers().get(player.getUniqueId());
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

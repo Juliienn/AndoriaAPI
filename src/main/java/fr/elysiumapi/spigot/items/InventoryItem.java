@@ -11,7 +11,6 @@ import java.util.UUID;
 
 public abstract class InventoryItem extends ItemBuilder{
 
-
     public InventoryItem(ItemStack item, String name) {
         super(item, name);
     }

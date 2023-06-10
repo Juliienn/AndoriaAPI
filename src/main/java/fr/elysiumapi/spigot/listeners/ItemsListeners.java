@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class ItemsListeners implements Listener {
 
-    private ElysiumAPI elysiumAPI;
+    private final ElysiumAPI elysiumAPI;
 
     public ItemsListeners(ElysiumAPI elysiumAPI){
 
@@ -53,7 +53,7 @@ public class ItemsListeners implements Listener {
         if(!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
         for(InventoryItem items : elysiumAPI.getInventoryItems()){
-            if(event.getCurrentItem().equals(items)){
+            if(event.getCurrentItem().equals(items.getItem())){
                 items.action((Player) event.getWhoClicked());
                 items.action(ElysiumPlayer.getElysiumPlayer((Player) event.getWhoClicked()));
             }

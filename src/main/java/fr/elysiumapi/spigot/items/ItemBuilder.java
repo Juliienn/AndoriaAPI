@@ -8,13 +8,14 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public abstract class ItemBuilder {
 
-    private ItemStack item;
-    private String name;
+    private final ItemStack item;
+    private final String name;
     private List<String> lores;
     private boolean glowing;
 
@@ -54,6 +55,16 @@ public abstract class ItemBuilder {
             this.item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
         }
         if(this.lores != null) itemMeta.setLore(this.lores);
+        this.item.setItemMeta(itemMeta);
+    }
+
+    public void addItemFlag(ItemFlag itemFlag){
+        this.item.getItemMeta().addItemFlags(itemFlag);
+    }
+
+    public void setLore(ArrayList<String> lores){
+        ItemMeta itemMeta = this.item.getItemMeta();
+        itemMeta.setLore(lores);
         this.item.setItemMeta(itemMeta);
     }
 
