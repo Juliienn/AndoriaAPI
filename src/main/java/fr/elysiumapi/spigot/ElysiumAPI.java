@@ -29,7 +29,7 @@ public final class ElysiumAPI extends JavaPlugin {
         inventoryItems = Lists.newArrayList();
 
         //Listeners
-        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new ItemsListeners(this), this);
 
     }
