@@ -16,10 +16,12 @@ repositories {
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot:1.8-R0.1-SNAPSHOT' // The full Spigot server with no shadowing. Requires mavenLocal.
+    compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     api 'org.slf4j:slf4j-api:1.7.30'
     api 'org.slf4j:slf4j-jdk14:1.7.30'
     api 'com.zaxxer:HikariCP:2.6.3'
