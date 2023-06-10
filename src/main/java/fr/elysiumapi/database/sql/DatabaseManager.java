@@ -16,6 +16,10 @@ public enum DatabaseManager {
         return databaseConnection;
     }
 
+    public static void initConnectionWithoutHikari(DatabaseManager databaseManager){
+        databaseManager.databaseConnection.initConnection();
+    }
+
     public static void initConnection(DatabaseManager databaseManager){
         databaseManager.databaseConnection.initPool();
     }

@@ -4,12 +4,15 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
 
+    private Connection connection;
     private final DatabaseConnector database;
     private HikariDataSource hikariDataSource;
+
 
     public DatabaseConnection(DatabaseConnector database){
         this.database = database;
@@ -28,6 +31,22 @@ public class DatabaseConnection {
         this.hikariDataSource = new HikariDataSource(hikariConfig);
     }
 
+    public void initConnection(){
+        try {
+            this.connection = DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPass());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeConnection(){
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initPool(){
         this.setHikariCP();
     }
@@ -41,5 +60,12 @@ public class DatabaseConnection {
             this.setHikariCP();
         }
         return hikariDataSource.getConnection();
+    }
+
+    public Connection getConnectionWithoutHikari() throws SQLException  {
+        if(this.connection == null){
+            this.initConnection();
+        }
+        return connection;
     }
 }
