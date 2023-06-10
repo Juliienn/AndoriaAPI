@@ -2,7 +2,7 @@ package fr.elysiumapi.database.player;
 
 import fr.elysiumapi.commons.exceptions.PlayerDataNotFoundException;
 import fr.elysiumapi.commons.ranks.ElysiumRanks;
-import fr.elysiumapi.database.ElysiumDatabase;
+import fr.elysiumapi.database.redis.JedisConnector;
 import fr.elysiumapi.database.redis.JedisManager;
 import fr.elysiumapi.database.sql.DatabaseManager;
 import redis.clients.jedis.Jedis;
@@ -12,10 +12,10 @@ import java.util.UUID;
 
 public class PlayerManager {
 
-    private final ElysiumDatabase elysiumDatabase;
+    private final JedisConnector jedisConnector;
 
-    public PlayerManager(ElysiumDatabase elysiumDatabase){
-        this.elysiumDatabase = elysiumDatabase;
+    public PlayerManager(JedisConnector jedisConnector){
+        this.jedisConnector = jedisConnector;
     }
 
     public PlayerData getPlayerData(UUID uuid, String name){
@@ -32,7 +32,7 @@ public class PlayerManager {
     }
 
     public PlayerData getPlayerDataFromRedis(UUID uuid){
-        Jedis jedis = elysiumDatabase.getJedisConnector().getJedisRessource();
+        Jedis jedis = jedisConnector.getJedisRessource();
         PlayerData playerData = null;
         String jedisDatas = jedis.get(JedisManager.PLAYERS.getRedisAccess() + uuid.toString());
         if(jedisDatas == null){
@@ -87,13 +87,13 @@ public class PlayerManager {
             e.printStackTrace();
         }
 
-        Jedis jedis = elysiumDatabase.getJedisConnector().getJedisRessource();
+        Jedis jedis = jedisConnector.getJedisRessource();
         jedis.set(JedisManager.PLAYERS.getRedisAccess() + uuid.toString(), "0:" +  name + ":Hinin:1000:0:" + System.currentTimeMillis());
         jedis.close();
     }
 
     public void sendPlayerDataToRedis(PlayerData playerData){
-        Jedis jedis = elysiumDatabase.getJedisConnector().getJedisRessource();
+        Jedis jedis = jedisConnector.getJedisRessource();
         jedis.set(JedisManager.PLAYERS.getRedisAccess() + playerData.getUuid(), playerData.getId() + ":" + playerData.getName() + ":" + playerData.getRank().getPrefix() + ":" + playerData.getMoney() + ":" + playerData.getVip() + ":" + playerData.getCreationDate().getTime());
         jedis.close();
     }

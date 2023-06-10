@@ -1,6 +1,3 @@
 main: fr.elysiumapi.spigot.ElysiumAPI
 name: ElysiumAPI
 version: 1.0
-libraries:
-  - com.zaxxer:HikariCP:2.6.3
-  - redis.clients:jedis:5.0.0-beta1
