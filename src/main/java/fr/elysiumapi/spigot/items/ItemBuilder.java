@@ -1,5 +1,6 @@
 package fr.elysiumapi.spigot.items;
 
+import com.google.common.collect.Sets;
 import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -10,41 +11,47 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public abstract class ItemBuilder {
 
+    private static final Set<ItemBuilder> itemBuilders = Sets.newHashSet();
     private final ItemStack item;
     private final String name;
     private List<String> lores;
     private boolean glowing;
 
-    public ItemBuilder(ItemStack item, String name){
+    public ItemBuilder(ItemStack item, String name, boolean register){
         this.item = item;
         this.name = name;
         this.buildItem();
+        if(register)itemBuilders.add(this);
     }
 
-    public ItemBuilder(ItemStack item, String name, boolean glowing){
+    public ItemBuilder(ItemStack item, String name, boolean glowing, boolean register){
         this.item = item;
         this.name = name;
         this.glowing = glowing;
         this.buildItem();
+        if(register)itemBuilders.add(this);
     }
 
-    public ItemBuilder(ItemStack item, String name, List<String> lores){
+    public ItemBuilder(ItemStack item, String name, List<String> lores, boolean register){
         this.item = item;
         this.name = name;
         this.lores = lores;
         this.buildItem();
+        if(register)itemBuilders.add(this);
     }
 
-    public ItemBuilder(ItemStack item, String name, List<String> lores, boolean glowing){
+    public ItemBuilder(ItemStack item, String name, List<String> lores, boolean glowing, boolean register){
         this.item = item;
         this.name = name;
         this.lores = lores;
         this.glowing = glowing;
         this.buildItem();
+        if(register)itemBuilders.add(this);
     }
 
     public void buildItem(){
@@ -96,5 +103,9 @@ public abstract class ItemBuilder {
 
     public String getName() {
         return name;
+    }
+
+    public static Set<ItemBuilder> getItemBuilders() {
+        return itemBuilders;
     }
 }

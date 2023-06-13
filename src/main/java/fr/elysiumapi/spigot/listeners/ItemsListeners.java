@@ -1,6 +1,5 @@
 package fr.elysiumapi.spigot.listeners;
 
-import fr.elysiumapi.spigot.ElysiumAPI;
 import fr.elysiumapi.spigot.items.InventoryItem;
 import fr.elysiumapi.spigot.items.ItemBuilder;
 import fr.elysiumapi.spigot.player.ElysiumPlayer;
@@ -14,17 +13,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class ItemsListeners implements Listener {
 
-    private final ElysiumAPI elysiumAPI;
-
-    public ItemsListeners(ElysiumAPI elysiumAPI){
-
-        this.elysiumAPI = elysiumAPI;
-    }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onInteract(PlayerInteractEvent event){
         final Player player = event.getPlayer();
-        for(ItemBuilder items : elysiumAPI.getItems()){
+        for(ItemBuilder items : ItemBuilder.getItemBuilders()){
             if(items.getItem().equals(event.getItem())){
                 items.action(player);
                 items.action(ElysiumPlayer.getElysiumPlayer(player));
@@ -35,7 +28,7 @@ public class ItemsListeners implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onInteractEntity(PlayerInteractEntityEvent event){
         Player player = event.getPlayer();
-        for(ItemBuilder items : elysiumAPI.getItems()){
+        for(ItemBuilder items : ItemBuilder.getItemBuilders()){
             if(items.getItem().equals(event.getPlayer().getItemInHand())){
                 if(event.getRightClicked() instanceof Player){
                     ElysiumPlayer player1 = ElysiumPlayer.getElysiumPlayer(event.getRightClicked().getUniqueId());
@@ -52,10 +45,10 @@ public class ItemsListeners implements Listener {
     public void onClick(InventoryClickEvent event){
         if(!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
-        for(InventoryItem items : elysiumAPI.getInventoryItems()){
+        for(InventoryItem items : InventoryItem.getInventoryItems()){
             if(event.getCurrentItem().equals(items.getItem())){
-                items.action((Player) event.getWhoClicked());
-                items.action(ElysiumPlayer.getElysiumPlayer((Player) event.getWhoClicked()));
+                items.onClick(event);
+                break;
             }
         }
     }

@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class ElysiumInventory {
 
-    private Inventory inventory;
+    private final Inventory inventory;
     private String name;
     private int size;
 
