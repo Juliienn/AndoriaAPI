@@ -28,7 +28,7 @@ public abstract class ElysiumCommand implements CommandExecutor {
         if(commandSender instanceof Player){
             if(name.equalsIgnoreCase(commandName)){
                 PlayerData playerData = playerManager.getPlayerData(((Player)commandSender).getUniqueId(), ((Player) commandSender).getName());
-                if(playerData.getRank().getPower() >= this.powerRequired) {
+                if(playerData.getRankInfos().getRank().getPower() >= this.powerRequired) {
                     execute(ElysiumPlayer.getElysiumPlayer((Player) commandSender), args);
                 }else{
                     commandSender.sendMessage(ChatColor.RED + "Commande inconnue, pour afficher les commandes disponibles /help");

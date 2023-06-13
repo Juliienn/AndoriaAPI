@@ -9,9 +9,9 @@ public enum ElysiumRanks implements Buyable {
 
     HININ("Hinin", "§7", 1, 0),
     GUERRIER("Guerrier", "§3", 2, 500),
-    DAIMYO("Daimyo", "§d", 3, 500),
-    TAISHO("Taisho", "§b", 4, 500),
-    SAMURAI("Samurai", "§6", 5, 500),
+    DAIMYO("Daimyo", "§d", 3, 1000),
+    TAISHO("Taisho", "§b", 4, 1500),
+    SAMURAI("Samurai", "§6", 5, 2000),
     YOUTUBEUR("Youtubeur", "§6", 6, -1),
     YOUTUBEURPLUS("Youtubeur+", "§6", 6, -1),
     ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, -1),

@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class DenyItem extends InventoryItem {
 
-    public DenyItem(Buyable buyable) {
+    public DenyItem() {
         super(new ItemStack(Material.WOOL, 1, (byte)14), "§4Annuler");
     }
 

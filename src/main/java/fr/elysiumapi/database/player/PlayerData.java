@@ -1,6 +1,6 @@
 package fr.elysiumapi.database.player;
 
-import fr.elysiumapi.commons.ranks.ElysiumRanks;
+import fr.elysiumapi.commons.ranks.PlayerRank;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -10,12 +10,12 @@ public class PlayerData {
     private final int id;
     private final UUID uuid;
     private final String name;
-    private ElysiumRanks rank;
+    private final PlayerRank rank;
     private int money;
     private int vip;
     private final Timestamp createdat;
 
-    public PlayerData(int id, UUID uuid,String name, ElysiumRanks rank, int money, int vip, Timestamp createdat){
+    public PlayerData(int id, UUID uuid,String name, PlayerRank rank, int money, int vip, Timestamp createdat){
         this.id = id;
         this.uuid = uuid;
         this.name = name;
@@ -30,10 +30,6 @@ public class PlayerData {
 
     public void addVip(int amount){
         this.vip += amount;
-    }
-
-    public void setRank(ElysiumRanks rank) {
-        this.rank = rank;
     }
 
     public void setVip(int vip) {
@@ -52,7 +48,7 @@ public class PlayerData {
         return name;
     }
 
-    public ElysiumRanks getRank() {
+    public PlayerRank getRankInfos() {
         return rank;
     }
 
