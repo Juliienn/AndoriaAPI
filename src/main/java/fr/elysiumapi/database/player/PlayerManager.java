@@ -91,7 +91,7 @@ public class PlayerManager {
         }
 
         Jedis jedis = jedisConnector.getJedisRessource();
-        jedis.set(JedisManager.PLAYERS.getRedisAccess() + uuid.toString(), "0:" +  name + ":Hinin" + System.currentTimeMillis()+(long) 20*365*24*60*60*1000 + ":" + System.currentTimeMillis() + ":1000:0:" + System.currentTimeMillis());
+        jedis.set(JedisManager.PLAYERS.getRedisAccess() + uuid.toString(), "0:" +  name + ":Hinin:" + System.currentTimeMillis()+(long) 20*365*24*60*60*1000 + ":" + System.currentTimeMillis() + ":1000:0:" + System.currentTimeMillis());
         jedis.close();
     }
 
