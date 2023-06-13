@@ -1,10 +1,11 @@
 package fr.elysiumapi.commons.ranks;
 
 import fr.elysiumapi.commons.Symbols;
+import fr.elysiumapi.spigot.shop.Buyable;
 
 import java.util.HashMap;
 
-public enum ElysiumRanks {
+public enum ElysiumRanks implements Buyable {
 
     HININ("Hinin", "§7", 1, 0),
     GUERRIER("Guerrier", "§3", 2, 500),
@@ -58,7 +59,13 @@ public enum ElysiumRanks {
         return tagId;
     }
 
+    @Override
     public int getPrice() {
-        return price;
+        return this.price;
+    }
+
+    @Override
+    public Class<? extends Buyable> getType() {
+        return ElysiumRanks.class;
     }
 }
