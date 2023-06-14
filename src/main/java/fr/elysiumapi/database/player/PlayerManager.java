@@ -39,6 +39,7 @@ public class PlayerManager {
         if(jedisDatas == null){
             return null;
         }
+        System.err.println(jedisDatas);
         String[] accountDatas = jedisDatas.split(":");
         playerData = new PlayerData(Integer.parseInt(accountDatas[0]), uuid, accountDatas[1], new PlayerRank(ElysiumRanks.nameToRank(accountDatas[2]), new Timestamp(Long.parseLong(accountDatas[3])), new Timestamp(Long.parseLong(accountDatas[4]))), Integer.parseInt(accountDatas[5]), Integer.parseInt(accountDatas[6]), new Timestamp(Long.parseLong(accountDatas[7])));
         jedis.close();
