@@ -1,14 +1,18 @@
 package fr.elysiumapi.utils;
 
+import fr.elysiumapi.commons.player.IElysiumPlayer;
 import fr.elysiumapi.database.sql.DatabaseManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.UUID;
 
 public final class PlayerUtils {
+
+    public static HashMap<UUID, IElysiumPlayer> elysiumPlayer;
 
     public static UUID uuidFromName(String playerName){
         try {
