@@ -152,10 +152,10 @@ public class PlayerDataManager {
 
             Jedis jedis = jedisConnector.getJedisRessource();
             jedis.set(JedisManager.PLAYERS.getRedisAccess() + uuid.toString(), name + "/" + "1000/0/" + System.currentTimeMillis());
+            jedis.set(JedisManager.RANKS.getRedisAccess() + uuid.toString(), "Hinin/" + System.currentTimeMillis() + "/" + System.currentTimeMillis());
             jedis.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }
