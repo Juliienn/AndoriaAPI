@@ -28,6 +28,7 @@ public abstract class ElysiumCommand implements CommandExecutor {
             PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
             if(playerData.getRankInfos().getRank().getPower() >= this.powerRequired){
                 execute(iElysiumPlayer, args);
+                execute(player, args);
             }else{
                 player.sendMessage("§7Commande inconnue, pour afficher les commandes: §e/help");
                 return false;
@@ -37,6 +38,8 @@ public abstract class ElysiumCommand implements CommandExecutor {
     }
 
     public abstract void execute(IElysiumPlayer player, String[] args);
+
+    public abstract void execute(Player player, String[] args);
 
     public int getPowerRequired(){
         return this.powerRequired;

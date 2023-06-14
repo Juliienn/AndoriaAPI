@@ -11,6 +11,8 @@ public interface IElysiumPlayer {
 
     String getIp();
 
+    void sendMessage(String message);
+
     void openInventory(ElysiumInventory inventory);
 
     void connect(String serverName);
