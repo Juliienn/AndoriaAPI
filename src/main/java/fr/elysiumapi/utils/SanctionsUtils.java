@@ -1,26 +1,26 @@
 package fr.elysiumapi.utils;
 
-import fr.elysiumapi.sanctions.BanManager;
-import fr.elysiumapi.sanctions.MuteManager;
+import fr.elysiumapi.sanctions.infos.BanInfo;
+import fr.elysiumapi.sanctions.infos.MuteInfo;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 public class SanctionsUtils {
 
-    private static HashMap<UUID, BanManager.BanInfo> banList;
-    private static HashMap<UUID, MuteManager.MuteInfo> mutedList;
+    private static HashMap<UUID, BanInfo> banList;
+    private static HashMap<UUID, MuteInfo> mutedList;
 
     public SanctionsUtils(){
         banList = new HashMap<>();
         mutedList = new HashMap<>();
     }
 
-    public static HashMap<UUID, BanManager.BanInfo> getBanList() {
+    public static HashMap<UUID, BanInfo> getBanList() {
         return banList;
     }
 
-    public static HashMap<UUID, MuteManager.MuteInfo> getMutedList() {
+    public static HashMap<UUID, MuteInfo> getMutedList() {
         return mutedList;
     }
 }
