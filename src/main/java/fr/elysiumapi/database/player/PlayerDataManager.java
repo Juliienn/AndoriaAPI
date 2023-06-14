@@ -58,9 +58,6 @@ public class PlayerDataManager {
             rankStatement.setString(4, playerData.getUUID().toString());
             rankStatement.executeUpdate();
 
-            // Validation de la transaction
-            connection.commit();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
