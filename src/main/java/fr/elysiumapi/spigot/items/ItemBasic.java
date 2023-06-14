@@ -1,12 +1,11 @@
 package fr.elysiumapi.spigot.items;
 
-import fr.elysiumapi.spigot.player.ElysiumPlayer;
+import fr.elysiumapi.commons.player.IElysiumPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import java.util.UUID;
 
 public class ItemBasic extends ItemBuilder{
 
@@ -26,7 +25,7 @@ public class ItemBasic extends ItemBuilder{
         super(item, name, lores, glowing, false);
     }
 
-    public void action(ElysiumPlayer player) {
+    public void action(IElysiumPlayer player) {
 
     }
 
@@ -38,12 +37,7 @@ public class ItemBasic extends ItemBuilder{
 
     }
 
-    public void actionTarget(ElysiumPlayer player, ElysiumPlayer target) {
-
-    }
-
-    @Override
-    public void actionTarget(UUID player, UUID target) {
+    public void actionTarget(Player player, Player target) {
 
     }
 }

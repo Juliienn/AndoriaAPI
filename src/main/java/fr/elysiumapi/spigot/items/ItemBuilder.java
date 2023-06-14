@@ -1,7 +1,7 @@
 package fr.elysiumapi.spigot.items;
 
 import com.google.common.collect.Sets;
-import fr.elysiumapi.spigot.player.ElysiumPlayer;
+import fr.elysiumapi.commons.player.IElysiumPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -79,15 +79,13 @@ public abstract class ItemBuilder {
         this.item.addEnchantment(enchant, level);
     }
 
-    public abstract void action(ElysiumPlayer player);
+    public abstract void action(IElysiumPlayer player);
 
     public abstract void action(Player player);
 
     public abstract void actionEntity(Player player, Entity entity);
 
-    public abstract void actionTarget(ElysiumPlayer player, ElysiumPlayer target);
-
-    public abstract void actionTarget(UUID player, UUID target);
+    public abstract void actionTarget(Player player, Player target);
 
     public ItemStack getItem() {
         return this.item;

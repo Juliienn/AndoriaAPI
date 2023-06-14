@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class PlayerData {
 
-    private final int id;
     private final UUID uuid;
     private final String name;
     private final PlayerRank rank;
@@ -15,8 +14,7 @@ public class PlayerData {
     private int vip;
     private final Timestamp createdat;
 
-    public PlayerData(int id, UUID uuid,String name, PlayerRank rank, int money, int vip, Timestamp createdat){
-        this.id = id;
+    public PlayerData(UUID uuid,String name, PlayerRank rank, int money, int vip, Timestamp createdat){
         this.uuid = uuid;
         this.name = name;
         this.rank = rank;
@@ -24,23 +22,7 @@ public class PlayerData {
         this.createdat = createdat;
     }
 
-    public void addMoney(int amount){
-        this.money += amount;
-    }
-
-    public void addVip(int amount){
-        this.vip += amount;
-    }
-
-    public void setVip(int vip) {
-        this.vip = vip;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public UUID getUuid() {
+    public UUID getUUID() {
         return uuid;
     }
 
@@ -52,19 +34,28 @@ public class PlayerData {
         return rank;
     }
 
-    public int getMoney() {
-        return money;
+    public void creditMoney(int amount){
+        this.money += amount;
     }
 
-    public int getVip() {
-        return vip;
+    public void removeMoney(int amount){
+        this.money-=amount;
+    }
+    public int getMoney(){
+        return this.money;
+    }
+    public void creditVIP(int amount){
+        this.vip += amount;
+    }
+
+    public void removeVIP(int amount){
+        this.vip-=amount;
+    }
+    public int getVIP(){
+        return this.vip;
     }
 
     public Timestamp getCreationDate() {
         return createdat;
-    }
-
-    public int getId() {
-        return id;
     }
 }

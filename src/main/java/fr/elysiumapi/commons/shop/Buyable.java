@@ -1,4 +1,4 @@
-package fr.elysiumapi.spigot.shop;
+package fr.elysiumapi.commons.shop;
 
 public interface Buyable {
 

@@ -1,4 +1,4 @@
-package fr.elysiumapi.commons.exceptions;
+package fr.elysiumapi.exceptions;
 
 public class PlayerDataNotFoundException extends Exception{
 

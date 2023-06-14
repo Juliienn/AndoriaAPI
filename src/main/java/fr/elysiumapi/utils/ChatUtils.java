@@ -1,9 +1,9 @@
-package fr.elysiumapi.spigot.utils;
+package fr.elysiumapi.utils;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.util.ChatPaginator;
 
-public class ChatUtils {
+public final class ChatUtils {
 
     public static String getCenteredText(String base)
     {

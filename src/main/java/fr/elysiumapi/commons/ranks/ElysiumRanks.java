@@ -1,29 +1,29 @@
 package fr.elysiumapi.commons.ranks;
 
 import fr.elysiumapi.commons.Symbols;
-import fr.elysiumapi.spigot.shop.Buyable;
+import fr.elysiumapi.commons.shop.Buyable;
 
 import java.util.HashMap;
 
 public enum ElysiumRanks implements Buyable {
 
-    HININ("Hinin", "§7", 1, 0),
-    GUERRIER("Guerrier", "§3", 2, 500),
-    DAIMYO("Daimyo", "§d", 3, 1000),
-    TAISHO("Taisho", "§b", 4, 1500),
-    SAMURAI("Samurai", "§6", 5, 2000),
-    YOUTUBEUR("Youtubeur", "§6", 6, -1),
-    YOUTUBEURPLUS("Youtubeur+", "§6", 6, -1),
-    ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, -1),
-    BUILDER("Builder", "§a", 8, -1),
-    MODERATEUR("Modérateur", "§a", 9, -1),
-    SUPERMODERATEUR("Modérateur+", "§2", 10, -1),
-    ADMIN("Administrateur", "§c", 11, -1);
+    HININ("Hinin", "§7", 0, false),
+    GUERRIER("Guerrier", "§3", 1, true),
+    DAIMYO("Daimyo", "§d", 2, true),
+    TAISHO("Taisho", "§b", 3, true),
+    SAMURAI("Samurai", "§6", 4, true),
+    YOUTUBEUR("Youtubeur", "§6", 5, false),
+    YOUTUBEURPLUS("Youtubeur+", "§6", 6, false),
+    ASSISTANT("Samurai"+ Symbols.STAR, "§6", 7, false),
+    BUILDER("Builder", "§a", 8, false),
+    MODERATEUR("Modérateur", "§a", 9, false),
+    SUPERMODERATEUR("Modérateur+", "§2", 10, false),
+    ADMIN("Administrateur", "§c", 11, false);
 
     final String prefix;
     final String tagId;
     final int power;
-    final int price;
+    final boolean buyable;
 
     private final static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
 
@@ -33,11 +33,11 @@ public enum ElysiumRanks implements Buyable {
         }
     }
 
-    ElysiumRanks(String prefix, String tagId, int power, int price){
+    ElysiumRanks(String prefix, String tagId, int power, boolean buyable){
         this.prefix = prefix;
         this.tagId = tagId;
         this.power = power;
-        this.price = price;
+        this.buyable = buyable;
     }
 
     public static ElysiumRanks nameToRank(String rankName){
@@ -61,7 +61,7 @@ public enum ElysiumRanks implements Buyable {
 
     @Override
     public int getPrice() {
-        return this.price;
+        return this.power*500;
     }
 
     @Override

@@ -5,36 +5,36 @@ import java.sql.Timestamp;
 public class PlayerRank {
 
     private ElysiumRanks rank;
-    private Timestamp purchased_at;
-    private Timestamp expires_at;
+    private Timestamp purchasedDate;
+    private Timestamp expirationDate;
 
-    public PlayerRank(ElysiumRanks rank, Timestamp purchased_at, Timestamp expires_at) {
+    public PlayerRank(ElysiumRanks rank, Timestamp purchasedDate, Timestamp expirationDate) {
         this.rank = rank;
-        this.purchased_at = purchased_at;
-        this.expires_at = expires_at;
+        this.purchasedDate = purchasedDate;
+        this.expirationDate = expirationDate;
     }
 
     public void setRank(ElysiumRanks rank) {
         this.rank = rank;
     }
 
-    public void setPurchased_at(Timestamp purchased_at) {
-        this.purchased_at = purchased_at;
+    public void setPurchased_at(Timestamp purchasedDate) {
+        this.purchasedDate = purchasedDate;
     }
 
-    public void setExpires_at(Timestamp expires_at) {
-        this.expires_at = expires_at;
+    public void setExpirationDate(Timestamp expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public ElysiumRanks getRank() {
         return rank;
     }
 
-    public Timestamp getPurchased_at() {
-        return purchased_at;
+    public Timestamp getPurchasedDate() {
+        return purchasedDate;
     }
 
-    public Timestamp getExpires_at() {
-        return expires_at;
+    public Timestamp getExpirationDate() {
+        return expirationDate;
     }
 }

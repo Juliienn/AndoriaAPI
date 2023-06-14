@@ -1,7 +1,7 @@
 package fr.elysiumapi.spigot.items;
 
 import com.google.common.collect.Sets;
-import fr.elysiumapi.spigot.player.ElysiumPlayer;
+import fr.elysiumapi.commons.player.IElysiumPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public abstract class InventoryItem extends ItemBuilder{
 
@@ -42,23 +41,20 @@ public abstract class InventoryItem extends ItemBuilder{
 
     public abstract void onClick(InventoryClickEvent event);
 
-    public void action(ElysiumPlayer elysiumPlayer){
+    @Override
+    public void action(IElysiumPlayer elysiumPlayer){
         
     }
-
+    @Override
     public void action(Player player){
 
     }
-
+    @Override
     public void actionEntity(Player player, Entity entity){
 
     }
-
-    public void actionTarget(ElysiumPlayer player, ElysiumPlayer target){
-
-    }
-
-    public void actionTarget(UUID player, UUID target){
+    @Override
+    public void actionTarget(Player player, Player target){
 
     }
 
