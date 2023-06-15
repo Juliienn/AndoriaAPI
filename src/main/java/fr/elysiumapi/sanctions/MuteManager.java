@@ -10,8 +10,8 @@ import java.util.UUID;
 public class MuteManager {
 
     public static void mute(UUID uuid, String reason, String bannerName, Timestamp expireDate) {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO muted (uuid, reason, bannername, expiredate, effectdate) VALUES (?, ?, ?, ?, ?)")) {
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO muted (uuid, reason, bannername, expiredate, effectdate) VALUES (?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, reason);
             preparedStatement.setString(3, bannerName);
@@ -24,8 +24,8 @@ public class MuteManager {
     }
 
     public static void unmute(UUID uuid) {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM muted WHERE uuid = ?")) {
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM muted WHERE uuid = ?")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -34,8 +34,8 @@ public class MuteManager {
     }
 
     public void loadMutedList() {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, reason, bannername, effectdate, expiredate FROM muted");
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, reason, bannername, effectdate, expiredate FROM muted");
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {

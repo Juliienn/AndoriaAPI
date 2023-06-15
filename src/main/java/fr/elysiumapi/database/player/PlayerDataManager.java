@@ -40,8 +40,8 @@ public class PlayerDataManager {
     }
 
     public void sendPlayerDataToSQL(PlayerData playerData) {
-        try (Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-             PreparedStatement playerStatement = connection.prepareStatement("UPDATE players SET pseudo = ?, money = ?, vip = ? WHERE uuid = ?");
+        Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
+        try (PreparedStatement playerStatement = connection.prepareStatement("UPDATE players SET pseudo = ?, money = ?, vip = ? WHERE uuid = ?");
              PreparedStatement rankStatement = connection.prepareStatement("UPDATE grades SET grade = ?, purchased_date = ?, expiration_date = ? WHERE uuid = ?")) {
 
             // Mise à jour des données du joueur
@@ -65,8 +65,8 @@ public class PlayerDataManager {
 
 
     public PlayerData getPlayerDataFromDatabase(UUID uuid, String name) throws PlayerDataNotFoundException {
-        try (Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-             PreparedStatement playerStatement = connection.prepareStatement("SELECT pseudo, money, vip, created_at FROM players WHERE uuid = ?");
+        Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
+        try (PreparedStatement playerStatement = connection.prepareStatement("SELECT pseudo, money, vip, created_at FROM players WHERE uuid = ?");
              PreparedStatement rankStatement = connection.prepareStatement("SELECT grade, purchased_date, expiration_date FROM grades WHERE uuid = ?")) {
 
             playerStatement.setString(1, uuid.toString());
@@ -128,8 +128,8 @@ public class PlayerDataManager {
     }
 
     public PlayerData createAccount(UUID uuid, String name) {
-        try (Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-             PreparedStatement playerStatement = connection.prepareStatement("INSERT INTO players (uuid, pseudo, money, vip, created_at) VALUES (?, ?, ?, ?, ?)");
+        Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
+        try (PreparedStatement playerStatement = connection.prepareStatement("INSERT INTO players (uuid, pseudo, money, vip, created_at) VALUES (?, ?, ?, ?, ?)");
              PreparedStatement rankStatement = connection.prepareStatement("INSERT INTO grades (uuid, grade, purchased_date, expiration_date) VALUES (?, ?, ?, ?)")) {
 
             playerStatement.setString(1, uuid.toString());

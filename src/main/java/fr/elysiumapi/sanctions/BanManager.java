@@ -10,8 +10,8 @@ import java.util.UUID;
 public class BanManager {
 
     public static void ban(UUID uuid, String reason, String bannerName, Timestamp expireDate) {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO banned (uuid, reason, bannername, permanently, effectdate, expiredate) VALUES (?, ?, ?, ?, ?, ?)");
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO banned (uuid, reason, bannername, permanently, effectdate, expiredate) VALUES (?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, reason);
             preparedStatement.setString(3, bannerName);
@@ -25,8 +25,8 @@ public class BanManager {
     }
 
     public static void unban(UUID uuid) {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM banned WHERE uuid = ?")) {
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM banned WHERE uuid = ?")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -35,8 +35,8 @@ public class BanManager {
     }
 
     public void loadBanList() {
-        try (Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, reason, bannername, permanently, effectdate, expiredate FROM banned");
+        Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, reason, bannername, permanently, effectdate, expiredate FROM banned");
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {

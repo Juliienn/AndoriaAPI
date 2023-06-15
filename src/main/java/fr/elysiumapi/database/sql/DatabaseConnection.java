@@ -30,7 +30,7 @@ public class DatabaseConnection {
         }
     }
 
-    public Connection getConnection() throws SQLException  {
+    public Connection getConnection() {
         if(this.connection == null){
             this.initConnection();
         }

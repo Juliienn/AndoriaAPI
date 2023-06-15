@@ -15,9 +15,8 @@ public final class PlayerUtils {
     public static HashMap<UUID, IElysiumPlayer> elysiumPlayer;
 
     public static UUID uuidFromName(String playerName){
-        try {
-            Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid FROM players WHERE pseudo = ?");
+        Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid FROM players WHERE pseudo = ?")){
             preparedStatement.setString(1, playerName);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
@@ -32,9 +31,8 @@ public final class PlayerUtils {
     }
 
     public static String nameFromUUID(UUID uuid){
-        try {
-            Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT pseudo FROM players WHERE uuid = ?");
+        Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT pseudo FROM players WHERE uuid = ?")){
             preparedStatement.setString(1, uuid.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
