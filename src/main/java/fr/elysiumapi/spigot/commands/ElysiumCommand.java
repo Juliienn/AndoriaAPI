@@ -23,7 +23,7 @@ public abstract class ElysiumCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player){
-            Player player = (Player) command;
+            Player player = (Player) commandSender;
             IElysiumPlayer iElysiumPlayer = IElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
             PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
             if(playerData.getRankInfos().getRank().getPower() >= this.powerRequired){

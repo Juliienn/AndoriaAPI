@@ -25,6 +25,7 @@ public class PlayerDataManager {
             playerData = getPlayerDataFromRedis(uuid);
             if(playerData == null){
                 playerData = getPlayerDataFromDatabase(uuid, name);
+                sendPlayerDataToRedis(playerData);
             }
         } catch (PlayerDataNotFoundException e) {
             System.err.println(e.getMessage());
