@@ -18,6 +18,7 @@ public class PlayerData {
         this.uuid = uuid;
         this.name = name;
         this.rank = rank;
+        this.money = money;
         this.vip = vip;
         this.createdat = createdat;
     }
