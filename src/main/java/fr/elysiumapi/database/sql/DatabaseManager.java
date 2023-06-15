@@ -16,23 +16,11 @@ public enum DatabaseManager {
         return databaseConnection;
     }
 
-    public static void initConnectionWithoutHikari(DatabaseManager databaseManager){
+    public static void initConnection(DatabaseManager databaseManager){
         databaseManager.databaseConnection.initConnection();
     }
 
-    public static void initConnection(DatabaseManager databaseManager){
-        databaseManager.databaseConnection.initPool();
-    }
-
-    public static void initConnections(){
-        for(DatabaseManager databaseManager : DatabaseManager.values()){
-            databaseManager.databaseConnection.initPool();
-        }
-    }
-
-    public static void closeConnections(){
-        for(DatabaseManager databaseManager : DatabaseManager.values()){
-            databaseManager.databaseConnection.closePool();
-        }
+    public static void closeConnection(DatabaseManager databaseManager){
+        databaseManager.databaseConnection.closeConnection();
     }
 }

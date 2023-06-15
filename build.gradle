@@ -22,9 +22,6 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
-    compileOnly 'org.slf4j:slf4j-api:1.7.30'
-    compileOnly 'org.slf4j:slf4j-jdk14:1.7.30'
-    compileOnly 'com.zaxxer:HikariCP:2.6.3'
     compileOnly 'redis.clients:jedis:5.0.0-beta1'
 }
 

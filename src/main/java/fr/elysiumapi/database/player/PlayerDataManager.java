@@ -89,14 +89,12 @@ public class PlayerDataManager {
                     Timestamp expiration_date = rankSet.getTimestamp("expiration_date");
                     PlayerRank playerRank = new PlayerRank(ElysiumRanks.nameToRank(rankName), purchased_date, expiration_date);
                     return new PlayerData(uuid, name, playerRank, money, vip, creation_date);
-                } else {
-                    createAccount(uuid, name);
                 }
                 rankSet.close();
-            } else {
-                createAccount(uuid, name);
+                return createAccount(uuid, name);
             }
             playerSet.close();
+            return createAccount(uuid, name);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -129,7 +127,7 @@ public class PlayerDataManager {
         return playerData;
     }
 
-    public void createAccount(UUID uuid, String name) {
+    public PlayerData createAccount(UUID uuid, String name) {
         try (Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
              PreparedStatement playerStatement = connection.prepareStatement("INSERT INTO players (uuid, pseudo, money, vip, created_at) VALUES (?, ?, ?, ?, ?)");
              PreparedStatement rankStatement = connection.prepareStatement("INSERT INTO grades (uuid, grade, purchased_date, expiration_date) VALUES (?, ?, ?, ?)")) {
@@ -154,5 +152,6 @@ public class PlayerDataManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return new PlayerData(uuid, name, new PlayerRank(ElysiumRanks.HININ, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis())), 1000, 0, new Timestamp(System.currentTimeMillis()));
     }
 }
