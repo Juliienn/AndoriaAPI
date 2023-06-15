@@ -1,6 +1,6 @@
 package fr.elysiumapi.utils;
 
-import fr.elysiumapi.commons.player.IElysiumPlayer;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import fr.elysiumapi.database.sql.DatabaseManager;
 
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public final class PlayerUtils {
 
-    public static HashMap<UUID, IElysiumPlayer> elysiumPlayer;
+    public static HashMap<UUID, ElysiumPlayer> elysiumPlayer;
 
     public static UUID uuidFromName(String playerName){
         Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();

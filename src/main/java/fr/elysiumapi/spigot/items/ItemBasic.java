@@ -1,6 +1,6 @@
 package fr.elysiumapi.spigot.items;
 
-import fr.elysiumapi.commons.player.IElysiumPlayer;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +25,7 @@ public class ItemBasic extends ItemBuilder{
         super(item, name, lores, glowing, false);
     }
 
-    public void action(IElysiumPlayer player) {
+    public void action(ElysiumPlayer player) {
 
     }
 

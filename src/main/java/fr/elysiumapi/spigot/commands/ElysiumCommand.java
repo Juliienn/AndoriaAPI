@@ -1,6 +1,6 @@
 package fr.elysiumapi.spigot.commands;
 
-import fr.elysiumapi.commons.player.IElysiumPlayer;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import fr.elysiumapi.database.player.PlayerData;
 import fr.elysiumapi.database.player.PlayerDataManager;
 import org.bukkit.command.Command;
@@ -24,7 +24,7 @@ public abstract class ElysiumCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player){
             Player player = (Player) commandSender;
-            IElysiumPlayer iElysiumPlayer = IElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
+            ElysiumPlayer iElysiumPlayer = ElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
             PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
             if(playerData.getRankInfos().getRank().getPower() >= this.powerRequired){
                 execute(iElysiumPlayer, args);
@@ -37,7 +37,7 @@ public abstract class ElysiumCommand implements CommandExecutor {
         return false;
     }
 
-    public abstract void execute(IElysiumPlayer player, String[] args);
+    public abstract void execute(ElysiumPlayer player, String[] args);
 
     public abstract void execute(Player player, String[] args);
 

@@ -1,7 +1,7 @@
 package fr.elysiumapi.spigot.items;
 
 import com.google.common.collect.Sets;
-import fr.elysiumapi.commons.player.IElysiumPlayer;
+import fr.elysiumapi.spigot.player.ElysiumPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public abstract class ItemBuilder {
 
@@ -69,6 +68,12 @@ public abstract class ItemBuilder {
         this.item.getItemMeta().addItemFlags(itemFlag);
     }
 
+    public void addAllItemFlags(ItemFlag itemFlag){
+        for(ItemFlag itemFlags : ItemFlag.values()){
+            getItem().getItemMeta().addItemFlags(itemFlags);
+        }
+    }
+
     public void setLore(ArrayList<String> lores){
         ItemMeta itemMeta = this.item.getItemMeta();
         itemMeta.setLore(lores);
@@ -79,7 +84,7 @@ public abstract class ItemBuilder {
         this.item.addEnchantment(enchant, level);
     }
 
-    public abstract void action(IElysiumPlayer player);
+    public abstract void action(ElysiumPlayer player);
 
     public abstract void action(Player player);
 
