@@ -30,9 +30,9 @@ public class JedisConnector {
             this.jedisPool = new JedisPool(config, this.jedisConnection.getHost(), this.jedisConnection.getPort(), 0);
             this.jedisPool.getResource().close();
 
-            System.out.println("§cConnected to redis");
+            System.out.println("Connected to redis");
         } catch (Exception e) {
-            System.out.println("§cCan't connect to database");
+            System.err.println("Can't connect to database");
         }
     }
 

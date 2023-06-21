@@ -60,9 +60,8 @@ public class ParticleLibrary {
         try {
 
             Object particleEnum = enumParticleClass.getField(particleName).get(null);
-            Constructor<?> packetConstructor = packetClass.getConstructor(enumParticleClass, boolean.class, float.class, float.class, float.class, float.class, float.class, float.class, float.class, int.class);
-
-            Object packet = packetConstructor.newInstance(particleEnum, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), offsetX, offsetY, offsetZ, speed, count);
+            Constructor<?> packetConstructor = packetClass.getDeclaredConstructor(enumParticleClass, boolean.class, float.class, float.class, float.class, float.class, float.class, float.class, float.class, int.class, int[].class);
+            Object packet = packetConstructor.newInstance(particleEnum, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), offsetX, offsetY, offsetZ, speed, count, null);
 
             sendPacket(player, packet);
         } catch (Exception e) {
