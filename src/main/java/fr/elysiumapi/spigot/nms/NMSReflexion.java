@@ -8,16 +8,10 @@ import java.lang.reflect.Method;
 public abstract class NMSReflexion {
 
     protected static final String NMS_VERSION;
-    protected static final Class<?> packetClass;
 
     static{
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         NMS_VERSION = packageName.substring(packageName.lastIndexOf('.') + 1);
-        try {
-            packetClass= Class.forName("net.minecraft.server.Packet");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static void sendPacket(Player player, Object packet) {

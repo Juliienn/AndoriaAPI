@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public abstract class ElysiumCommand implements CommandExecutor {
 
-    private PlayerDataManager playerDataManager;
+    private final PlayerDataManager playerDataManager;
     private final int powerRequired;
     private final String commandName;
 
@@ -24,10 +24,10 @@ public abstract class ElysiumCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player){
             Player player = (Player) commandSender;
-            ElysiumPlayer iElysiumPlayer = ElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
+            ElysiumPlayer elysiumPlayer = ElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
             PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
-            if(playerData.getRankInfos().getRank().getPower() >= this.powerRequired){
-                execute(iElysiumPlayer, args);
+            if(this.powerRequired == 0 ||playerData.getRankInfos().getRank().getPower() >= this.powerRequired){
+                execute(elysiumPlayer, args);
                 execute(player, args);
             }else{
                 player.sendMessage("§7Commande inconnue, pour afficher les commandes: §e/help");
