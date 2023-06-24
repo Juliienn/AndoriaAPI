@@ -27,6 +27,10 @@ public abstract class ElysiumInventory {
         items.add(item);
     }
 
+    public void clear(){
+        items.clear();
+        inventory.clear();
+    }
     public void setItem(ItemStack item, int slot){
         this.inventory.setItem(slot, item);
     }

@@ -63,6 +63,10 @@ public abstract class ElysiumPlayer {
         return items;
     }
 
+    public void setOpenedInventory(ElysiumInventory openedInventory) {
+        this.openedInventory = openedInventory;
+    }
+
     public ElysiumInventory getOpenedInventory() {
         return openedInventory;
     }
