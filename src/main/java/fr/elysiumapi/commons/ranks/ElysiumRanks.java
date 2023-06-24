@@ -3,8 +3,6 @@ package fr.elysiumapi.commons.ranks;
 import fr.elysiumapi.commons.Symbols;
 import fr.elysiumapi.commons.shop.Buyable;
 
-import java.util.HashMap;
-
 public enum ElysiumRanks implements Buyable {
 
     HININ("Hinin", "§7", 0, false),
@@ -25,14 +23,6 @@ public enum ElysiumRanks implements Buyable {
     final int power;
     final boolean buyable;
 
-    private final static HashMap<String, ElysiumRanks> ranks = new HashMap<>();
-
-    static{
-        for(ElysiumRanks rank : ElysiumRanks.values()){
-            ranks.put(rank.getPrefix(), rank);
-        }
-    }
-
     ElysiumRanks(String prefix, String tagId, int power, boolean buyable){
         this.prefix = prefix;
         this.tagId = tagId;
@@ -41,8 +31,10 @@ public enum ElysiumRanks implements Buyable {
     }
 
     public static ElysiumRanks nameToRank(String rankName){
-        if(ranks.get(rankName) != null){
-            return ranks.get(rankName);
+        for(ElysiumRanks ranks : ElysiumRanks.values()){
+            if(ranks.getPrefix().equalsIgnoreCase(rankName)){
+                return ranks;
+            }
         }
         return ElysiumRanks.HININ;
     }

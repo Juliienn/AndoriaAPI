@@ -10,19 +10,19 @@ import java.util.List;
 public class ItemBasic extends ItemBuilder{
 
     public ItemBasic(ItemStack item, String name) {
-        super(item, name, false);
+        super(item, name);
     }
 
     public ItemBasic(ItemStack item, String name, boolean glowing) {
-        super(item, name, glowing, false);
+        super(item, name, glowing);
     }
 
     public ItemBasic(ItemStack item, String name, List<String> lores) {
-        super(item, name, lores, false);
+        super(item, name, lores);
     }
 
     public ItemBasic(ItemStack item, String name, List<String> lores, boolean glowing) {
-        super(item, name, lores, glowing, false);
+        super(item, name, lores, glowing);
     }
 
     public void action(ElysiumPlayer player) {
