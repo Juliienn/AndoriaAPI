@@ -22,7 +22,7 @@ public final class NMSEntity extends NMSReflexion {
         }
     }
 
-    public static void registerEntity(String name, int id, Class<? extends entityInsentientClass> nmsClass, Class<? extends entityInsentientClass> customClass){
+    public static void registerEntity(String name, int id, Class<?> nmsClass, Class<?> customClass){
         try {
 
             List<Map<?, ?>> dataMap = new ArrayList<>();
