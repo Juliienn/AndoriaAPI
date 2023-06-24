@@ -12,6 +12,7 @@ import java.util.UUID;
 public abstract class ElysiumPlayer {
 
     private final Player player;
+    private ElysiumInventory openedInventory;
     private final List<ItemBuilder> items;
 
     public ElysiumPlayer(Player player){
@@ -35,6 +36,11 @@ public abstract class ElysiumPlayer {
 
     public void openInventory(ElysiumInventory inventory){
         this.player.openInventory(inventory.getInventory());
+        this.openedInventory = inventory;
+    }
+
+    public void closeInventory(){
+        this.openedInventory = null;
     }
 
     public void sendMessage(String message){
@@ -55,6 +61,10 @@ public abstract class ElysiumPlayer {
 
     public List<ItemBuilder> getItems() {
         return items;
+    }
+
+    public ElysiumInventory getOpenedInventory() {
+        return openedInventory;
     }
 
     public static ElysiumPlayer getIElysiumPlayer(UUID uuid){
