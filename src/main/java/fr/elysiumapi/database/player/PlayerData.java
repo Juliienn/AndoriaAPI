@@ -40,7 +40,7 @@ public class PlayerData {
     }
 
     public void removeMoney(int amount){
-        this.money-=amount;
+        this.money=money - amount;
     }
     public int getMoney(){
         return this.money;

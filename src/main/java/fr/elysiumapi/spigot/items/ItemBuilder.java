@@ -50,8 +50,7 @@ public abstract class ItemBuilder {
         ItemMeta itemMeta = this.item.getItemMeta();
         if(name != null) itemMeta.setDisplayName(this.name);
         if(this.glowing){
-            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            this.item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+            this.item.addUnsafeEnchantment(Enchantment.DURABILITY, 0);
         }
         if(this.lores != null) itemMeta.setLore(this.lores);
         this.item.setItemMeta(itemMeta);
@@ -61,7 +60,7 @@ public abstract class ItemBuilder {
         this.item.getItemMeta().addItemFlags(itemFlag);
     }
 
-    public void addAllItemFlags(ItemFlag itemFlag){
+    public void addAllItemFlags(){
         for(ItemFlag itemFlags : ItemFlag.values()){
             getItem().getItemMeta().addItemFlags(itemFlags);
         }

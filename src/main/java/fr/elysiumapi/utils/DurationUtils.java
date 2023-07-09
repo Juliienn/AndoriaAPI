@@ -24,15 +24,6 @@ public final class DurationUtils {
         String regExp = "^(?:(\\d+y)?(\\d+mo)?(\\d+w)?(\\d+d)?(\\d+h)?(\\d+m)?(\\d+s)?)$";
         return text.matches(regExp);
     }
-
-    private static boolean isNumeric(char c){
-        try{
-            Integer.valueOf(String.valueOf(c));
-            return true;
-        }catch(NumberFormatException e){
-            return false;
-        }
-    }
     private static long toMonths(long millis) {
         return TimeUnit.MILLISECONDS.toDays(millis) / 30;
     }
@@ -43,7 +34,7 @@ public final class DurationUtils {
         char[] times = text.toCharArray();
         for (int i = 0; i < times.length; i++){
             char c = times[i];
-            if(isNumeric(c)){
+            if(StringUtils.isNumeric(c)){
                 pretext+=c;
             }else{
                 if(String.valueOf(c).equalsIgnoreCase("m")){
