@@ -3,6 +3,7 @@ package fr.elysiumapi.spigot.player;
 import fr.elysiumapi.spigot.inventories.ElysiumInventory;
 import fr.elysiumapi.spigot.items.ItemBuilder;
 import fr.elysiumapi.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public abstract class ElysiumPlayer {
 
     public void closeInventory(){
         this.openedInventory = null;
+        player.closeInventory();
     }
 
     public void sendMessage(String message){
@@ -72,6 +74,10 @@ public abstract class ElysiumPlayer {
     }
 
     public static ElysiumPlayer getIElysiumPlayer(UUID uuid){
+        if(!(PlayerUtils.elysiumPlayer.containsKey(uuid))){
+            PlayerUtils.elysiumPlayer.put(uuid, new ElysiumPlayer(Bukkit.getPlayer(uuid)) {
+            });
+        }
         return PlayerUtils.elysiumPlayer.get(uuid);
     }
 }
