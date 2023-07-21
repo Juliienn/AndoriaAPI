@@ -10,10 +10,13 @@ import java.util.UUID;
 
 public class SanctionsManager {
 
-    private static final HashMap<UUID, SanctionsInfo> sanctions;
+    private static final HashMap<UUID, SanctionsInfo> muted;
+    private static final HashMap<UUID, SanctionsInfo> banned;
+
 
     static{
-        sanctions = new HashMap<>();
+        muted = new HashMap<>();
+        banned = new HashMap<>();
     }
 
     public static void apply(SanctionsType sanctionsType, UUID uuid, String reason, String bannerName, Timestamp expireDate) {
@@ -26,7 +29,11 @@ public class SanctionsManager {
             preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
             preparedStatement.setTimestamp(6, expireDate == null ? new Timestamp(DurationUtils.TIMESTAMP_LIMIT) : expireDate);
             preparedStatement.executeUpdate();
-            sanctions.put(uuid, new SanctionsInfo(sanctionsType, uuid, reason, bannerName, new Timestamp(System.currentTimeMillis()), expireDate));
+            if(sanctionsType.equals(SanctionsType.MUTE)){
+                muted.put(uuid, new SanctionsInfo(sanctionsType, uuid, reason, bannerName, new Timestamp(System.currentTimeMillis()), expireDate));
+                return;
+            }
+            banned.put(uuid, new SanctionsInfo(sanctionsType, uuid, reason, bannerName, new Timestamp(System.currentTimeMillis()), expireDate));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,7 +45,11 @@ public class SanctionsManager {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, sanctionsType.getTableName());
             preparedStatement.executeUpdate();
-            sanctions.remove(uuid);
+            if(sanctionsType.equals(SanctionsType.MUTE)){
+                muted.remove(uuid);
+                return;
+            }
+            banned.remove(uuid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,14 +67,23 @@ public class SanctionsManager {
                 String bannerName = resultSet.getString("bannername");
                 Timestamp effectDate = resultSet.getTimestamp("effectdate");
                 Timestamp expireDate = resultSet.getTimestamp("expiredate");
-                sanctions.put(uuid, new SanctionsInfo(SanctionsType.fromName(type), uuid, reason, bannerName, effectDate, expireDate));
+                SanctionsType sanctionsType = SanctionsType.fromName(type);
+                if(sanctionsType.equals(SanctionsType.MUTE)){
+                    muted.put(uuid, new SanctionsInfo(sanctionsType, uuid, reason, bannerName, effectDate, expireDate));
+                }else{
+                    banned.put(uuid, new SanctionsInfo(sanctionsType, uuid, reason, bannerName, effectDate, expireDate));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static HashMap<UUID, SanctionsInfo> getSanctions() {
-        return sanctions;
+    public static HashMap<UUID, SanctionsInfo> getMuted() {
+        return muted;
+    }
+
+    public static HashMap<UUID, SanctionsInfo> getBanned() {
+        return banned;
     }
 }
