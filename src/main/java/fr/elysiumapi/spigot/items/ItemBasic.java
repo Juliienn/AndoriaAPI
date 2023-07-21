@@ -13,6 +13,14 @@ public class ItemBasic extends ItemBuilder{
         super(item, name);
     }
 
+    public ItemBasic(ItemStack item, String name, Enchantment... enchants) {
+        super(item, name, enchants);
+    }
+
+    public ItemBasic(ItemStack item, String name, List<String> lores, Enchantment... enchants) {
+        super(item, name, lores, enchants);
+    }
+
     public ItemBasic(ItemStack item, String name, boolean glowing) {
         super(item, name, glowing);
     }

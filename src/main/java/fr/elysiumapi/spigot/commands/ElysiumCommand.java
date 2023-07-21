@@ -22,16 +22,18 @@ public abstract class ElysiumCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-        if(commandSender instanceof Player){
-            Player player = (Player) commandSender;
-            ElysiumPlayer elysiumPlayer = ElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
-            PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
-            if(this.powerRequired == 0 ||playerData.getRankInfos().getRank().getPower() >= this.powerRequired){
-                execute(elysiumPlayer, args);
-                execute(player, args);
-            }else{
-                player.sendMessage("§7Commande inconnue, pour afficher les commandes: §e/help");
-                return false;
+        if(command.getName().equalsIgnoreCase(this.commandName)) {
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+                ElysiumPlayer elysiumPlayer = ElysiumPlayer.getIElysiumPlayer(player.getUniqueId());
+                PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
+                if (this.powerRequired == 0 || playerData.getRankInfos().getRank().getPower() >= this.powerRequired) {
+                    execute(elysiumPlayer, args);
+                    execute(player, args);
+                } else {
+                    player.sendMessage("§7Commande inconnue, pour afficher les commandes: §e/help");
+                    return false;
+                }
             }
         }
         return false;

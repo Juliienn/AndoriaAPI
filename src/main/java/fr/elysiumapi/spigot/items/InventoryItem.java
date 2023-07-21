@@ -15,6 +15,14 @@ public abstract class InventoryItem extends ItemBuilder{
         super(item, name);
     }
 
+    public InventoryItem(ItemStack item, String name, Enchantment... enchants) {
+        super(item, name, enchants);
+    }
+
+    public InventoryItem(ItemStack item, String name, List<String> lores, Enchantment... enchants) {
+        super(item, name, lores, enchants);
+    }
+
     public InventoryItem(ItemStack item, String name, boolean glowing) {
         super(item, name, glowing);
     }

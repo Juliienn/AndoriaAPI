@@ -4,8 +4,7 @@ public enum JedisManager {
 
     PLAYERS("players:"),
     RANKS("ranks:"),
-    FACTION("factions:"),
-    SANCTIONS("sanctions:");
+    FACTION("factions:");
 
     final String redisAccess;
 

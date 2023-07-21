@@ -18,10 +18,21 @@ public abstract class ItemBuilder {
     private List<String> lores;
     private boolean glowing;
 
+
+
     public ItemBuilder(ItemStack item, String name){
         this.item = item;
         this.name = name;
         this.buildItem();
+    }
+
+    public ItemBuilder(ItemStack item, String name, fr.elysiumapi.spigot.items.Enchantment...enchants){
+        this.item = item;
+        this.name = name;
+        this.buildItem();
+        for(fr.elysiumapi.spigot.items.Enchantment enchant : enchants){
+            addEnchant(enchant.getEnchantment(), enchant.getLevel());
+        }
     }
 
     public ItemBuilder(ItemStack item, String name, boolean glowing){
@@ -37,7 +48,15 @@ public abstract class ItemBuilder {
         this.lores = lores;
         this.buildItem();
     }
-
+    public ItemBuilder(ItemStack item, String name, List<String> lores, fr.elysiumapi.spigot.items.Enchantment...enchants){
+        this.item = item;
+        this.name = name;
+        this.lores = lores;
+        this.buildItem();
+        for(fr.elysiumapi.spigot.items.Enchantment enchant : enchants){
+            addEnchant(enchant.getEnchantment(), enchant.getLevel());
+        }
+    }
     public ItemBuilder(ItemStack item, String name, List<String> lores, boolean glowing){
         this.item = item;
         this.name = name;

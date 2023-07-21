@@ -11,7 +11,6 @@ public final class ElysiumAPI extends JavaPlugin {
         instance = this;
 
     }
-
     public static ElysiumAPI getInstance() {
         return instance;
     }

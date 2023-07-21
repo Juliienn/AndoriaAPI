@@ -1,6 +1,6 @@
 package fr.elysiumapi.utils;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.util.ChatPaginator;
 
 public final class ChatUtils {

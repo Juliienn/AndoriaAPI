@@ -36,6 +36,7 @@ public abstract class ElysiumPlayer {
     }
 
     public void openInventory(ElysiumInventory inventory){
+        this.openedInventory = null;
         this.player.openInventory(inventory.getInventory());
         this.openedInventory = inventory;
     }

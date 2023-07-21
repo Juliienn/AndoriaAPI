@@ -10,6 +10,8 @@ public final class DurationUtils {
 
     private static final HashMap<String, Long> durationKeys = Maps.newHashMap();
 
+    public static final Long TIMESTAMP_LIMIT = 2147480047000L;
+
     static{
         durationKeys.put("y", (long)12*30*24*3600*1000);
         durationKeys.put("mo", (long)30*24*3600*1000);
@@ -26,6 +28,9 @@ public final class DurationUtils {
     }
     private static long toMonths(long millis) {
         return TimeUnit.MILLISECONDS.toDays(millis) / 30;
+    }
+    private static long toYears(long millis) {
+        return TimeUnit.MILLISECONDS.toDays(millis) / 365;
     }
 
     public static long getTimeFromString(String text){
@@ -53,28 +58,65 @@ public final class DurationUtils {
     }
 
     public static String getDuration(long millis) throws IllegalDurationException {
-        if(millis < 0) {
+        if (millis < 0) {
             throw new IllegalDurationException();
         }
 
         long[] durations = new long[]{
-                toMonths(millis),
+                toYears(millis),
+                toMonths(millis) % 12,
                 TimeUnit.MILLISECONDS.toDays(millis) % 30,
                 TimeUnit.MILLISECONDS.toHours(millis) % 24,
                 TimeUnit.MILLISECONDS.toMinutes(millis) % 60,
                 TimeUnit.MILLISECONDS.toSeconds(millis) % 60
         };
 
-        String[] units = new String[]{" Mois ", " Jours ", " Heures ", " Minutes ", " Secondes"};
+        String[] units = new String[]{" Années ", " Mois ", " Jours ", " Heures ", " Minutes ", " Secondes"};
         StringBuilder sb = new StringBuilder();
 
+        int count = 0; // Compteur pour suivre le nombre de durées ajoutées
         for (int i = 0; i < durations.length; i++) {
             if (durations[i] > 0) {
                 sb.append(durations[i]).append(units[i]);
+                count++;
+
+                if (count >= 2) {
+                    break; // Sortir de la boucle après avoir ajouté les deux durées les plus élevées
+                }
             }
         }
 
         return sb.toString();
+    }
+    public static String getDurationLimited(long millis) throws IllegalDurationException {
+        if (millis < 0) {
+            throw new IllegalDurationException();
+        }
 
+        long[] durations = new long[]{
+                toYears(millis),
+                toMonths(millis) % 12,
+                TimeUnit.MILLISECONDS.toDays(millis) % 30,
+                TimeUnit.MILLISECONDS.toHours(millis) % 24,
+                TimeUnit.MILLISECONDS.toMinutes(millis) % 60,
+                TimeUnit.MILLISECONDS.toSeconds(millis) % 60
+        };
+
+        String[] units = new String[]{"y", "mo", "d", "h", "m", "s"};
+        StringBuilder sb = new StringBuilder();
+
+        int count = 0; // Compteur pour suivre le nombre de durées ajoutées
+        for (int i = 0; i < durations.length; i++) {
+            if (durations[i] > 0) {
+                sb.append(durations[i]).append(units[i]);
+                count++;
+
+                if (count >= 2) {
+                    break; // Sortir de la boucle après avoir ajouté les deux durées les plus élevées
+                }
+            }
+        }
+
+        return sb.toString();
     }
 }
