@@ -1,3 +1,4 @@
-main: fr.elysiumapi.spigot.ElysiumAPI
-name: ElysiumAPI
+main: fr.andoriaapi.spigot.AndoriaAPI
+name: AndoriaAPI
 version: 1.0
+authors: [NeyZyH]

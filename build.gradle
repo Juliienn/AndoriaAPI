@@ -18,7 +18,6 @@ repositories {
     }
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
-    maven { url = "https://jitpack.io" }
 }
 
 dependencies {
@@ -26,9 +25,9 @@ dependencies {
     compileOnly 'redis.clients:jedis:5.0.0-beta1'
 }
 
-group = 'fr.elysium'
+group = 'fr.andoria'
 version = '1.0-SNAPSHOT'
-description = 'ElysiumAPI'
+description = 'AndoriaAPI'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
