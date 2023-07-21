@@ -4,7 +4,6 @@ import fr.andoriaapi.exceptions.PlayerDataNotFoundException;
 import fr.andoriaapi.commons.ranks.AndoriaRanks;
 import fr.andoriaapi.commons.ranks.PlayerRank;
 import fr.andoriaapi.database.redis.JedisConnector;
-import fr.andoriaapi.database.redis.JedisManager;
 import fr.andoriaapi.database.sql.DatabaseManager;
 import fr.andoriaapi.utils.DurationUtils;
 import redis.clients.jedis.Jedis;
@@ -36,8 +35,8 @@ public class PlayerDataManager {
 
     public void sendPlayerDataToRedis(PlayerData playerData){
         Jedis jedis = jedisConnector.getJedisRessource();
-        jedis.set(JedisManager.PLAYERS.getRedisAccess() + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime());
-        jedis.set(JedisManager.RANKS.getRedisAccess() + playerData.getUUID(), playerData.getRankInfos().getRank().getPrefix() + "/" + playerData.getRankInfos().getPurchasedDate().getTime() + "/" + playerData.getRankInfos().getExpirationDate().getTime());
+        jedis.set("players:" + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime());
+        jedis.set("grades:" + playerData.getUUID(), playerData.getRankInfos().getRank().getPrefix() + "/" + playerData.getRankInfos().getPurchasedDate().getTime() + "/" + playerData.getRankInfos().getExpirationDate().getTime());
         jedis.close();
     }
 
@@ -114,8 +113,8 @@ public class PlayerDataManager {
 
     public PlayerData getPlayerDataFromRedis(UUID uuid){
         Jedis jedis = jedisConnector.getJedisRessource();
-        String playerDatas = jedis.get(JedisManager.PLAYERS.getRedisAccess() + uuid.toString());
-        String gradeDatas = jedis.get(JedisManager.RANKS.getRedisAccess() + uuid.toString());
+        String playerDatas = jedis.get("players:" + uuid.toString());
+        String gradeDatas = jedis.get("grades:" + uuid.toString());
         if(playerDatas == null){
             return null;
         }
@@ -163,10 +162,10 @@ public class PlayerDataManager {
             rankStatement.setTimestamp(4, new Timestamp(DurationUtils.TIMESTAMP_LIMIT));
             rankStatement.executeUpdate();
 
-            //Jedis jedis = jedisConnector.getJedisRessource();
-            //jedis.set(JedisManager.PLAYERS.getRedisAccess() + uuid.toString(), name + "/" + "1000/0/" + System.currentTimeMillis());
-            //jedis.set(JedisManager.RANKS.getRedisAccess() + uuid.toString(), "Hinin/" + System.currentTimeMillis() + "/" + System.currentTimeMillis());
-            //jedis.close();
+            Jedis jedis = jedisConnector.getJedisRessource();
+            jedis.set("players:" + uuid.toString(), name + "/" + "1000/0/" + System.currentTimeMillis());
+            jedis.set("grades:" + uuid.toString(), "Hinin/" + System.currentTimeMillis() + "/" + DurationUtils.TIMESTAMP_LIMIT);
+            jedis.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
