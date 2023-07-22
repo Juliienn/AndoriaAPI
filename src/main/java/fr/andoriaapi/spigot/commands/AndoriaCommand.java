@@ -25,7 +25,7 @@ public abstract class AndoriaCommand implements CommandExecutor {
         if(command.getName().equalsIgnoreCase(this.commandName)) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                AndoriaPlayer elysiumPlayer = AndoriaPlayer.getIElysiumPlayer(player.getUniqueId());
+                AndoriaPlayer elysiumPlayer = AndoriaPlayer.getAndoriaPlayer(player.getUniqueId());
                 PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
                 if (this.powerRequired == 0 || playerData.getRankInfos().getRank().getPower() >= this.powerRequired) {
                     execute(elysiumPlayer, args);
