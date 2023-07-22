@@ -35,7 +35,7 @@ public class PlayerDataManager {
 
     public void sendPlayerDataToRedis(PlayerData playerData){
         Jedis jedis = jedisConnector.getJedisRessource();
-        jedis.set("players:" + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime());
+        jedis.set("players:" + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime() + "/" + new Timestamp(System.currentTimeMillis()));
         jedis.set("grades:" + playerData.getUUID(), playerData.getRankInfos().getRank().getPrefix() + "/" + playerData.getRankInfos().getPurchasedDate().getTime() + "/" + playerData.getRankInfos().getExpirationDate().getTime());
         jedis.close();
     }
