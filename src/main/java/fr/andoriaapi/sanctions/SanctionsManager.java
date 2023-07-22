@@ -57,7 +57,7 @@ public class SanctionsManager {
 
     public void loadList() {
         Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, type, reason, bannername, permanently, effectdate, expiredate FROM effectivesanctions");
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, type, reason, bannername, effectdate, expiredate FROM effectivesanctions");
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
