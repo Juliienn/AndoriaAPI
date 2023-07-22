@@ -35,7 +35,7 @@ public class PlayerDataManager {
 
     public void sendPlayerDataToRedis(PlayerData playerData){
         Jedis jedis = jedisConnector.getJedisRessource();
-        jedis.set("players:" + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime() + "/" + new Timestamp(System.currentTimeMillis()));
+        jedis.set("players:" + playerData.getUUID(), playerData.getName() + "/" + playerData.getMoney() + "/" + playerData.getPbs() + "/" + playerData.getCreationDate().getTime() + "/" + System.currentTimeMillis());
         jedis.set("grades:" + playerData.getUUID(), playerData.getRankInfos().getRank().getPrefix() + "/" + playerData.getRankInfos().getPurchasedDate().getTime() + "/" + playerData.getRankInfos().getExpirationDate().getTime());
         jedis.close();
     }
@@ -163,7 +163,7 @@ public class PlayerDataManager {
             rankStatement.executeUpdate();
 
             Jedis jedis = jedisConnector.getJedisRessource();
-            jedis.set("players:" + uuid.toString(), name + "/" + "1000/0/" + System.currentTimeMillis());
+            jedis.set("players:" + uuid.toString(), name + "/" + "1000/0/" + System.currentTimeMillis() + "/" + System.currentTimeMillis());
             jedis.set("grades:" + uuid.toString(), "Hinin/" + System.currentTimeMillis() + "/" + DurationUtils.TIMESTAMP_LIMIT);
             jedis.close();
         } catch (SQLException e) {

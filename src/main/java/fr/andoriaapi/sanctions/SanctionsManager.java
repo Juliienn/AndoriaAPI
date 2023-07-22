@@ -21,7 +21,7 @@ public class SanctionsManager {
 
     public static void apply(SanctionsType sanctionsType, UUID uuid, String reason, String bannerName, Timestamp expireDate) {
         Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO sanctions (uuid, type, reason, bannername, effectdate, expiredate) VALUES (?, ?, ?, ?, ?, ?)")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO effectivesanctions (uuid, type, reason, bannername, effectdate, expiredate) VALUES (?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, sanctionsType.getTableName());
             preparedStatement.setString(3, reason);
@@ -41,7 +41,7 @@ public class SanctionsManager {
 
     public static void remove(SanctionsType sanctionsType, UUID uuid) {
         Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM sanctions WHERE uuid = ?, type = ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM effectivesanctions WHERE uuid = ?, type = ?")) {
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, sanctionsType.getTableName());
             preparedStatement.executeUpdate();
@@ -57,7 +57,7 @@ public class SanctionsManager {
 
     public void loadList() {
         Connection connection = DatabaseManager.SANCTIONS.getDatabaseConnection().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, type, reason, bannername, permanently, effectdate, expiredate FROM sanctions");
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, type, reason, bannername, permanently, effectdate, expiredate FROM effectivesanctions");
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
