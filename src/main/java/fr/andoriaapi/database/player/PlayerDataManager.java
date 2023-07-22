@@ -86,22 +86,17 @@ public class PlayerDataManager {
 
                 rankStatement.setString(1, uuid.toString());
                 ResultSet rankSet = rankStatement.executeQuery();
+                PlayerRank playerRank = new PlayerRank(AndoriaRanks.HININ, new Timestamp(System.currentTimeMillis()), new Timestamp(DurationUtils.TIMESTAMP_LIMIT));
                 if (rankSet.next()) {
                     String rankName = rankSet.getString("grade");
                     Timestamp purchased_date = rankSet.getTimestamp("purchased_date");
                     Timestamp expiration_date = rankSet.getTimestamp("expiredate");
                     Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-                    if((currentDate).after(expiration_date)){
-                        rankName = "Hinin";
-                        purchased_date = currentDate;
-                        expiration_date = new Timestamp(DurationUtils.TIMESTAMP_LIMIT);
-                    }
-                    PlayerRank playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
-                    rankSet.close();
-                    playerSet.close();
-                    return new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
+                    playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
                 }
-                return createAccount(uuid, name);
+                rankSet.close();
+                playerSet.close();
+                return new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
             }
             return createAccount(uuid, name);
         } catch (SQLException e) {
@@ -130,11 +125,6 @@ public class PlayerDataManager {
         Timestamp purchased_date = new Timestamp(Long.parseLong(rankDatas[1]));
         Timestamp expiration_date = new Timestamp(Long.parseLong(rankDatas[2]));
         Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-        if((currentDate).after(expiration_date)){
-            rankName = "Hinin";
-            purchased_date = currentDate;
-            expiration_date = new Timestamp(DurationUtils.TIMESTAMP_LIMIT);
-        }
         PlayerRank playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
 
         PlayerData playerData = new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
@@ -144,6 +134,7 @@ public class PlayerDataManager {
     }
 
     public PlayerData createAccount(UUID uuid, String name) {
+        System.out.println("creating account for " + uuid.toString());
         Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
         try (PreparedStatement playerStatement = connection.prepareStatement("INSERT INTO players (uuid, name, money, pbs, creation_date, last_connection) VALUES (?, ?, ?, ?, ?, ?)");
              PreparedStatement rankStatement = connection.prepareStatement("INSERT INTO grades (uuid, grade, purchased_date, expiredate) VALUES (?, ?, ?, ?)")) {
