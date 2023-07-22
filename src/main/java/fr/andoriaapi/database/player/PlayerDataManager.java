@@ -91,13 +91,12 @@ public class PlayerDataManager {
                     String rankName = rankSet.getString("grade");
                     Timestamp purchased_date = rankSet.getTimestamp("purchased_date");
                     Timestamp expiration_date = rankSet.getTimestamp("expiredate");
-                    Timestamp currentDate = new Timestamp(System.currentTimeMillis());
                     playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
                 }
                 rankSet.close();
-                playerSet.close();
                 return new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
             }
+            playerSet.close();
             return createAccount(uuid, name);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +123,6 @@ public class PlayerDataManager {
         String rankName = rankDatas[0];
         Timestamp purchased_date = new Timestamp(Long.parseLong(rankDatas[1]));
         Timestamp expiration_date = new Timestamp(Long.parseLong(rankDatas[2]));
-        Timestamp currentDate = new Timestamp(System.currentTimeMillis());
         PlayerRank playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
 
         PlayerData playerData = new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
