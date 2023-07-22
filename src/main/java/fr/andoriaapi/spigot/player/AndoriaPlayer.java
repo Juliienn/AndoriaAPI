@@ -74,7 +74,7 @@ public abstract class AndoriaPlayer {
         return openedInventory;
     }
 
-    public static AndoriaPlayer getIElysiumPlayer(UUID uuid){
+    public static AndoriaPlayer getAndoriaPlayer(UUID uuid){
         if(!(PlayerUtils.elysiumPlayer.containsKey(uuid))){
             PlayerUtils.elysiumPlayer.put(uuid, new AndoriaPlayer(Bukkit.getPlayer(uuid)) {
             });
