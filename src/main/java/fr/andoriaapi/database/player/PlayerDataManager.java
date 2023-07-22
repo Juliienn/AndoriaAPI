@@ -75,6 +75,7 @@ public class PlayerDataManager {
             ResultSet playerSet = playerStatement.executeQuery();
 
             if (playerSet.next()) {
+                System.out.println("ok playerset");
                 String pseudo = playerSet.getString("name");
                 if (!(pseudo.equals(name))) {
                     pseudo = name;
@@ -86,15 +87,16 @@ public class PlayerDataManager {
 
                 rankStatement.setString(1, uuid.toString());
                 ResultSet rankSet = rankStatement.executeQuery();
-                PlayerRank playerRank = new PlayerRank(AndoriaRanks.HININ, new Timestamp(System.currentTimeMillis()), new Timestamp(DurationUtils.TIMESTAMP_LIMIT));
                 if (rankSet.next()) {
+                    System.out.println("ok rankset");
                     String rankName = rankSet.getString("grade");
                     Timestamp purchased_date = rankSet.getTimestamp("purchased_date");
                     Timestamp expiration_date = rankSet.getTimestamp("expiredate");
-                    playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
+                    PlayerRank playerRank = new PlayerRank(AndoriaRanks.nameToRank(rankName), purchased_date, expiration_date);
+                    return new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
                 }
                 rankSet.close();
-                return new PlayerData(uuid, name, playerRank, money, vip, creation_date, last_connection);
+                return createAccount(uuid, name);
             }
             playerSet.close();
             return createAccount(uuid, name);
