@@ -25,10 +25,10 @@ public abstract class AndoriaCommand implements CommandExecutor {
         if(command.getName().equalsIgnoreCase(this.commandName)) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                AndoriaPlayer elysiumPlayer = AndoriaPlayer.getAndoriaPlayer(player.getUniqueId());
+                AndoriaPlayer andoriaPlayer = AndoriaPlayer.getAndoriaPlayer(player.getUniqueId());
                 PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId(), player.getName());
                 if (this.powerRequired == 0 || playerData.getRankInfos().getRank().getPower() >= this.powerRequired) {
-                    execute(elysiumPlayer, args);
+                    execute(andoriaPlayer, args);
                     execute(player, args);
                 } else {
                     player.sendMessage("§7Commande inconnue, pour afficher les commandes: §e/help");

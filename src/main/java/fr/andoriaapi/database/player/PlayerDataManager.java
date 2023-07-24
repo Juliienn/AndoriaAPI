@@ -75,7 +75,6 @@ public class PlayerDataManager {
             ResultSet playerSet = playerStatement.executeQuery();
 
             if (playerSet.next()) {
-                System.out.println("ok playerset");
                 String pseudo = playerSet.getString("name");
                 if (!(pseudo.equals(name))) {
                     pseudo = name;
@@ -88,7 +87,6 @@ public class PlayerDataManager {
                 rankStatement.setString(1, uuid.toString());
                 ResultSet rankSet = rankStatement.executeQuery();
                 if (rankSet.next()) {
-                    System.out.println("ok rankset");
                     String rankName = rankSet.getString("grade");
                     Timestamp purchased_date = rankSet.getTimestamp("purchased_date");
                     Timestamp expiration_date = rankSet.getTimestamp("expiredate");
@@ -134,7 +132,6 @@ public class PlayerDataManager {
     }
 
     public PlayerData createAccount(UUID uuid, String name) {
-        System.out.println("creating account for " + uuid.toString());
         Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
         try (PreparedStatement playerStatement = connection.prepareStatement("INSERT INTO players (uuid, name, money, pbs, creation_date, last_connection) VALUES (?, ?, ?, ?, ?, ?)");
              PreparedStatement rankStatement = connection.prepareStatement("INSERT INTO grades (uuid, grade, purchased_date, expiredate) VALUES (?, ?, ?, ?)")) {

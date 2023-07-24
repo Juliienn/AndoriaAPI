@@ -8,11 +8,15 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
     }
+    dependencies {
+        classpath "com.github.johnrengelman:shadow:8.1.1"
+    }
 }
 
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
 }
 
 repositories {
@@ -20,7 +24,9 @@ repositories {
     maven {
         url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
     }
-
+    maven{
+        url = uri('https://repo1.maven.org/maven2/')
+    }
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
@@ -31,7 +37,10 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     compileOnly 'redis.clients:jedis:5.0.0-beta1'
+    api 'com.google.code.gson:gson:2.7'
 }
+
+apply plugin: "com.github.johnrengelman.shadow"
 
 group = 'fr.andoria'
 version = '1.0-SNAPSHOT'

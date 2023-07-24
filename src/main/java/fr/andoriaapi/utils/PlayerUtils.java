@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public final class PlayerUtils {
 
-    public static HashMap<UUID, AndoriaPlayer> elysiumPlayer;
+    public static HashMap<UUID, AndoriaPlayer> andoriaPlayers;
 
     public static UUID uuidFromName(String playerName){
         Connection connection = DatabaseManager.PLAYERS.getDatabaseConnection().getConnection();
