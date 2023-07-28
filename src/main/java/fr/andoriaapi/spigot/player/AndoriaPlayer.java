@@ -1,5 +1,8 @@
 package fr.andoriaapi.spigot.player;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+import fr.andoriaapi.spigot.AndoriaAPI;
 import fr.andoriaapi.spigot.inventories.AndoriaInventory;
 import fr.andoriaapi.spigot.items.ItemBuilder;
 import fr.andoriaapi.utils.PlayerUtils;
@@ -22,7 +25,10 @@ public abstract class AndoriaPlayer {
     }
 
     public void connect(String serverName){
-
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("Connect");
+        out.writeUTF(serverName);
+        this.player.sendPluginMessage(AndoriaAPI.getInstance(), "BungeeCord", out.toByteArray());
     }
 
     public void addItem(ItemBuilder item){
