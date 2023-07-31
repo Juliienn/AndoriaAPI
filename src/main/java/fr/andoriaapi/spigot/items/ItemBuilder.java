@@ -8,10 +8,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ItemBuilder {
+public abstract class ItemBuilder implements Cloneable{
 
     private final ItemStack item;
     private final String name;
@@ -65,6 +64,11 @@ public abstract class ItemBuilder {
         this.buildItem();
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
     private void buildItem(){
         ItemMeta itemMeta = this.item.getItemMeta();
         if(name != null) itemMeta.setDisplayName(this.name);
@@ -80,12 +84,14 @@ public abstract class ItemBuilder {
     }
 
     public void addAllItemFlags(){
+        ItemMeta itemMeta = this.item.getItemMeta();
         for(ItemFlag itemFlags : ItemFlag.values()){
-            getItem().getItemMeta().addItemFlags(itemFlags);
+            itemMeta.addItemFlags(itemFlags);
         }
+        this.item.setItemMeta(itemMeta);
     }
 
-    public void setLore(ArrayList<String> lores){
+    public void setLore(List<String> lores){
         ItemMeta itemMeta = this.item.getItemMeta();
         itemMeta.setLore(lores);
         this.item.setItemMeta(itemMeta);
