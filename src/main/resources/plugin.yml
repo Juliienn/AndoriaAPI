@@ -1,4 +1,5 @@
 main: fr.andoriaapi.spigot.AndoriaAPI
 name: AndoriaAPI
-version: 1.0
-authors: [NeyZyH]
+version: '1.0'
+api-version: '1.8.8'
+description: AndoriaAPI
